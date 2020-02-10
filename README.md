@@ -42,42 +42,42 @@ npm run dev
 ## Estructura 
 
 ### Inicio
-Página de inicio. No implementada en la versión actual
+Página de inicio. No implementada en la versión actual  
 
 ---
 
 ### Comprar
-Página donde se pueden ver las ofertas de energía y comprarlas.
+Página donde se pueden ver las ofertas de energía y comprarlas   
 
 __Restricciones__: 
-No se puede aceptar una oferta propia
-No se pueden aceptar ofertas ya ejecutadas
-~~No se puede comprar energía si no hay espacio en tu batería~~ (no implementado)
+No se puede aceptar una oferta propia   
+No se pueden aceptar ofertas ya ejecutadas   
+~~No se puede comprar energía si no hay espacio en tu batería~~ (no implementado)   
 
 ---
 ### Vender
-Página para poder crear y borrar ofertas de energía. 
+Página para poder crear y borrar ofertas de energía  
 
 __Restricciones__: 
-Solo se ven las ofertas propias
-~~Solo puedes vender una cantidad de energía si está disponible en tu batería~~ (no implementado)
-Los precios y las cantidades de las ofertas tienes que ser números enteros positivos
+Solo se ven las ofertas propias   
+~~Solo puedes vender una cantidad de energía si está disponible en tu batería~~ (no implementado)   
+Los precios y las cantidades de las ofertas tienes que ser números enteros positivos   
 
  ---
 ### Historial
 
-Página de historial de ventas. Enseña las direcciones del comprador y del vendedor.
+Página de historial de ventas. Enseña las direcciones del comprador y del vendedor   
 
 ---
 
 
 #### Bugs conocidos:
 
- - En Metamask, bajo algunas condiciones, los cambios de direcciones no se reflejan automáticamente
- - Si se cancela el intento de borrado de una oferta (desde Metamask) se queda bloqueado el botón de borrar hasta que se cambia de sección, o bien se refresque la página
+ - En Metamask, bajo algunas condiciones, los cambios de direcciones no se reflejan automáticamente  
+ - Si se cancela el intento de borrado de una oferta (desde Metamask) se queda bloqueado el botón de borrar hasta que se cambia de sección, o bien se refresque la página   
 
 #### Próximos cambios:
 
- - Los campos de *cantidad* y *precio* en las ventas de energía son campos de texto, mientras que en Solidity son *uint*. 
- - Añadir más restricciones (requires) en las funciones del smart contract
- - Optimizar más el código de los smart contracts para reducir el *gas* utilizado
+ - Los campos de *cantidad* y *precio* en las ventas de energía son campos de texto, mientras que en Solidity son *uint*   
+ - Añadir más restricciones (requires) en las funciones del smart contract   
+ - Optimizar más el código de los smart contracts para reducir el *gas* utilizado  

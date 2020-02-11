@@ -75,6 +75,7 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 
  - En Metamask, bajo algunas condiciones, los cambios de direcciones no se reflejan automáticamente  
  - Si se cancela el intento de borrado de una oferta (desde Metamask) se queda bloqueado el botón de borrar hasta que se cambia de sección, o bien se refresque la página   
+ - Poner ofertas con números entre 0 y 1 provoca un error en el contrato, al considerarlo un 0   
 
 #### Próximos cambios:
 

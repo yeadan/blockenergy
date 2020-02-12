@@ -10,7 +10,7 @@
 * [Vue.js](https://vuejs.org/) - Framework de Javascript utilizado
 * [web3.js](https://github.com/ethereum/web3.js/) - Librería de Javascript utilizada para interactuar con la blockchain de Ethereum   
 * [Remix](https://remix.ethereum.org/) - IDE de Solidity para crear, compilar y probar smart contracts
-* [Metamask](https://metamask.io/) - Plugin de Chrome que hace de puente entre la dApp y el navegador navegador
+* [Metamask](https://metamask.io/) - Plugin de Chrome que hace de puente entre la dApp y el navegador
 
 ## Dependencias:
   "[ethereum-blockies-base64](https://https://www.npmjs.com/package/ethereum-blockies-base64)" - Librería para generar identidades como bloques en PNG, codificados en base64   

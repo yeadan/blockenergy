@@ -26,8 +26,8 @@
 Clona este repositorio en local e instala las dependencias como sigue:
 
 ```bash
-git clone https://github.com/yeadan/blockenergy-v.1.2
-cd blockenergy-v.1.2
+git clone https://github.com/yeadan/blockenergy
+cd blockenergy
 npm install
 ```
 Instala la extensión de [Metamask](https://metamask.io/), que será el enlace con la blockchain. En el metamask escoge la red de pruebas Ropsten y créate algunas direcciones con ethers.

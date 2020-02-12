@@ -1,6 +1,6 @@
 <template>
   <div class="jumbotron">
-    <div class="row align-items-center">
+    <div class="row ">
       <div class="col-3">
         <bateria></bateria>
       </div>
@@ -12,7 +12,7 @@
               <div v-if="oferta.hecho == true" style="margin-bottom:25px" class="card text-center col-11" >
                 <img class="card-img-top img-center" style="padding:5%" 
                   v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor >
-                <p style="padding:5%;position: absolute;top: 12%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </p>
+                <p style="padding:5%;position: absolute;top: 15%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </p>
                 <div class="card-block">
                   <p style="margin:5px" align="left" class="card-text"><strong>Precio: </strong><small>{{ oferta.precio }}€/Wh</small></p>
                   <p style="margin:5px" align="left" class="card-text"><strong>Cantidad: </strong><small> {{oferta.cantidad }}W</small></p>

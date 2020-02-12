@@ -14,7 +14,7 @@
                     <input v-model="precio" v-on:keyup.enter="crearOferta" type="number" name="precio" placeholder="€/Wh" class="col-3 form-control">
                     <p class="col-1"></p>
                 <!-- Botón para añadir -->
-                    <input align="left" v-on:click="crearOferta" type="button" value="Añadir" class="col-2 btn btn-success form-control">
+                    <input align="left" :disabled="buttonOff" @click="crearOferta" type="button" value="Añadir" class="col-2 btn btn-success form-control">
                 </div>
             </form>
         </section>
@@ -56,7 +56,7 @@
                         <td v-if="oferta.hecho == false">
                             <span>
                                 <!-- Botón para borrar -->
-                                <button onmouseout='disabled="true"' @click="borrarOferta(index)" class="btn btn-danger">Borrar</button>
+                                <button :disabled="buttonOff" @click="borrarOferta(index)" class="btn btn-danger">Borrar</button>
                             </span>
                         </td>
                     
@@ -73,57 +73,64 @@ import energy from '../../contracts/energyInstance'
 export default {
     data(){ return {
                     // Input cantidad
-                    cantidad: '',
+                    cantidad: 0,
                     // Input precio
-                    precio: '',
+                    precio: 0,
+                    buttonOff: false
                 }
             },
     beforeMount(){
       this.ofertar()
     }, 
     mounted() {
-      // Coge todas las ofertas de la blockchain y las 
-      //pasa a $root.ofertas
-      energy.methods
-      .returnAllAuctions()
-      .call()
-      .then((result) => {
-        console.log(result)
-        this.$root.ofertas = []
-        var i=0
-        for (i=0;i<result.length;i++) {
-            //Solo las ofertas sin aceptar y que sean del usuario
-            this.$root.ofertas.push({
-              vendedor: result[i].seller,
-              id: result[i].id,
-              cantidad: result[i].amount,
-              precio: result[i].price,
-              hecho: result[i].done
-            })
-            //para solo mostrar las de uno mismo
-            if (result[i].seller != this.$root.proba)
-                this.$root.ofertas[i].hecho = true
-        }
-    })
+      
+      this.llenarOfertas()
+      
   },
     methods: {
+        llenarOfertas: function () {
+            // Coge todas las ofertas de la blockchain y las 
+            //pasa a $root.ofertas
+            energy.methods
+            .returnAllAuctions()
+            .call()
+            .then((result) => {
+                //console.log(result)
+                this.$root.ofertas = []
+                var i=0
+                for (i=0;i<result.length;i++) {
+                    //Solo las ofertas sin aceptar y que sean del usuario
+                    this.$root.ofertas.push({
+                    vendedor: result[i].seller,
+                    id: result[i].id,
+                    cantidad: result[i].amount,
+                    precio: result[i].price,
+                    hecho: result[i].done
+                    })
+                    //para solo mostrar las de uno mismo
+                    if (result[i].seller != this.$root.proba)
+                        this.$root.ofertas[i].hecho = true
+                }
+            })
+        },
         ofertar: function () {
             web3.eth.getAccounts().then((accounts) => {
                 this.$root.proba = accounts[0];
-                console.log(this.$root.proba)
+                //console.log(this.$root.proba)
             })
         },
         crearOferta: function () {
 
-            if ( !this.cantidad || !this.precio || this.cantidad <= 0 || this.precio <= 0) {
+            if ( !this.cantidad || !this.precio || parseInt(this.cantidad) <= 0 || parseInt(this.precio) <= 0) {
                 swal('Error','El precio y la cantidad deben ser enteros positivos.','error');
                 return;
             }
+            this.buttonOff = true;
             //La batería no está actualizada
-            if (this.$root.globalTotal + parseInt(this.cantidad) >15000) {
-                swal('Oops', 'No puedes poner a la venta más energía de la disponible','error');
-                return;
-            }
+            //if (this.$root.globalTotal + parseInt(this.cantidad) >15000) {
+           //     swal('Oops', 'No puedes poner a la venta más energía de la disponible','error');
+            //    return;
+           // }
             // El id sera un getTime
             var id = new Date().getTime()
             // Llamamos a createAuction en la Blockchain
@@ -135,29 +142,34 @@ export default {
                     this.$root.ofertas.push({
                         vendedor: accounts[0],
                         id: + new Date(),
-                        cantidad: this.cantidad,
-                        precio: this.precio,
+                        cantidad: parseInt(this.cantidad),
+                        precio: parseInt(this.precio),
                     })
-                    console.log(this.$root.ofertas)
-                    return energy.methods.returnAllAuctions().call()
+                    this.cantidad = 0;
+                    this.precio = 0;
+                    this.buttonOff = false;
+                    //console.log(this.$root.ofertas)
+                     this.llenarOfertas()
+                    //return energy.methods.returnAllAuctions().call()
                 })
             })
                      
             //Actualizamos la batería - batería no actualizada
-            this.$root.globalTotal += parseInt(this.cantidad);
+            //this.$root.globalTotal += parseInt(this.cantidad);
             // Vaciamos el formulario de añadir
-            this.cantidad = '';
-            this.precio = '';
+            this.cantidad = 0;
+            this.precio = 0;
   
         },
         borrarOferta: function (indice) {
+            this.buttonOff = true
             energy.methods.
             deleteAuction(indice)
             .send({ from: this.$root.proba })
             .then(( ) => {
-                return energy.methods.returnAllAuctions().call();
+                this.buttonOff = false
+                this.llenarOfertas()
             })    
-
                         /* desactualizado
                         // Borramos de la lista
                         this.$root.globalTotal -= parseInt(this.$root.ofertas[oferta_id].cantidad);
@@ -165,6 +177,7 @@ export default {
                        // this.ofertas.splice(oferta_id, 1);
                         this.$root.ofertas.splice(oferta_id, 1);
                         */
+                       
         }
     }
 }

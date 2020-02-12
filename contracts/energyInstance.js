@@ -1,4 +1,4 @@
-import web3 from './web3';
+import web3 from './web3'
 
 // Dirección del creador del contrato
 const address = "0x03c33C46eC6EE9265f9374b98363532516Dd40bA"

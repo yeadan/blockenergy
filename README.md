@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.2.0
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.3.0
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   
 ## Prerrequisitos
@@ -74,11 +74,19 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 #### Bugs conocidos:
 
  - En Metamask, bajo algunas condiciones, los cambios de direcciones no se reflejan automáticamente  
- - Si se cancela el intento de borrado de una oferta (desde Metamask) se queda bloqueado el botón de borrar hasta que se cambia de sección, o bien se refresque la página   
- - Poner ofertas con números entre 0 y 1 provoca un error en el contrato, al considerarlo un 0   
+ - Si se cancela el intento de borrado de una oferta (desde Metamask) se quedan bloqueados los botones hasta que se cambia de sección, o bien se refresca la página    
 
 #### Próximos cambios:
 
- - Los campos de *cantidad* y *precio* en las ventas de energía son campos de texto, mientras que en Solidity son *uint*   
  - Añadir más restricciones (requires) en las funciones del smart contract   
- - Optimizar más el código de los smart contracts para reducir el *gas* utilizado  
+ - Optimizar más el código de los smart contracts para reducir el *gas* utilizado   
+ - Aislas las funciones repetidas en compras y ventas (y posiblemente en Historial) 
+ - Posible: cambiar el precio en Kw/h en vez de w/h y multiplicar? para guardarlo en Ethereum     
+ 
+ #### Hecho v3
+ - Cambiados cantidad y precio a integer, y obviados los decimales   
+ - Ventas: Al hacer click en un botón se bloquean todos hasta terminar una transacción   
+ - Ventas: Se actualiza automáticamente al terminar una transacción   
+ - Compras: Al hacer click en un botón se bloquean todos hasta terminar una transacción   
+ - Compras: Separado el vue component en dos partes al estilo de ventas (comprar y ComprarForm)   
+ - Historial: Cambiado el centrado de los items, quitado el center   

@@ -15,6 +15,7 @@ const vm = new Vue({
   data: { 
     globalTotal: Number=0,
     batteryTotal: Number=0,
+    etherPrice: Number=1,
     proba: '',
     ofertas: []
   },

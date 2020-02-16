@@ -1,15 +1,12 @@
 <template>
   <div class="jumbotron">
     <div class="row ">
-      <div class="col-3">
-        <bateria></bateria>
-      </div>
-      <div class="col-9">
+      <div class="col-12">
         <h2 style="margin-bottom:25px" align="center"> Historial de ventas </h2>
         <div class="container">
           <div class="row" v-if="Object.keys($root.ofertas).length > 0">
             <div v-for="(oferta, index) in $root.ofertas" :key="index">
-              <div v-if="oferta.hecho == true" style="margin-bottom:25px" class="card text-center col-11" >
+              <div v-if="oferta.hecho == true" style="margin-bottom:25px" class="card text-center" >
                 <img class="card-img-top img-center" style="padding:5%" 
                   v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor >
                 <p style="padding:5%;position: absolute;top: 15%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </p>
@@ -17,6 +14,7 @@
                   <p style="margin:5px" align="left" class="card-text"><strong>Precio: </strong><small>{{ oferta.precio }}€/Wh</small></p>
                   <p style="margin:5px" align="left" class="card-text"><strong>Cantidad: </strong><small> {{oferta.cantidad }}W</small></p>
                   <p style="margin:5px" align="left" class="card-text"><strong>Total: </strong><small>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
+                  <p style="margin:5px" align="left" class="card-text"><strong>Eth: </strong><small>{{(oferta.gwei/1000000000)}}Ξ </small></p>                  
                   <img class="card-img" style="padding:5%" v-bind:src="blockie(oferta.comprador)" v-bind:title=oferta.comprador width="2">
                   <p style="padding:5%;position: absolute;top: 75%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.comprador>Comprador </p>
                 </div>
@@ -62,9 +60,10 @@ export default {
           vendedor: result[i].seller,
           id: result[i].id,
           cantidad: result[i].amount,
-          precio: result[i].price,
+          precio: result[i].price/1000,
           comprador: result[i].buyer,
-          hecho: result[i].done
+          hecho: result[i].done,
+          gwei: result[i].totalGWEI
         })
       }
     }

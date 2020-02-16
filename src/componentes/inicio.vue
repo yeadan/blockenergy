@@ -1,14 +1,18 @@
 <template>
+
 <div>
-<p> INICIO </p>
+  INICIO
 </div>
+
 </template>
 
 
 <script>
+
 import Bateria from './bateria.vue'
 import Carousel from './carousel.vue'
 export default {
+
   components: {
     bateria: Bateria,
     carousel: Carousel

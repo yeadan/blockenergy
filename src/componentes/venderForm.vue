@@ -83,6 +83,14 @@ export default {
       this.ofertar()
     }, 
     mounted() {
+    // Función para manejar el error de Metamask al cancelar las
+      // transacciones
+      window.onerror = function(message, source, line, column, error) {
+         if (error.message == 'Number.isInteger is not a function') {
+          this.buttonOff = false
+          $(':button').prop('disabled', false);
+        }
+      }
       
       this.llenarOfertas()
       
@@ -104,7 +112,8 @@ export default {
                     vendedor: result[i].seller,
                     id: result[i].id,
                     cantidad: result[i].amount,
-                    precio: result[i].price,
+                    precio: result[i].price/1000,
+                    gwei: result[i].gwei,
                     hecho: result[i].done
                     })
                     //para solo mostrar las de uno mismo
@@ -120,12 +129,25 @@ export default {
             })
         },
         crearOferta: function () {
+            if ( !this.cantidad || !this.precio ) {
+                swal('Error','Rellena todos los campos.','error');
+                return;
+            }          
+            let cnt = this.cantidad
+            let prc = this.precio*1000
 
-            if ( !this.cantidad || !this.precio || parseInt(this.cantidad) <= 0 || parseInt(this.precio) <= 0) {
-                swal('Error','El precio y la cantidad deben ser enteros positivos.','error');
+            if ( cnt < 100 ) {
+                swal('Error','La cantidad no puede ser menos de 100.','error');
                 return;
             }
+            if (  parseInt(prc) <= 0) {
+                swal('Error','El precio no puede ser tan pequeño.','error');
+                return;
+            }
+            //Bloqueamos los botones
             this.buttonOff = true;
+
+            //
             //La batería no está actualizada
             //if (this.$root.globalTotal + parseInt(this.cantidad) >15000) {
            //     swal('Oops', 'No puedes poner a la venta más energía de la disponible','error');
@@ -136,14 +158,14 @@ export default {
             // Llamamos a createAuction en la Blockchain
             return web3.eth.getAccounts().then((accounts) => {
                 energy.methods.
-                createAuction(id,parseInt(this.precio),parseInt(this.cantidad))
+                createAuction(id,parseInt(prc),parseInt(cnt))
                 .send({ from: accounts[0] })
                 .then(() => {
                     this.$root.ofertas.push({
                         vendedor: accounts[0],
                         id: + new Date(),
-                        cantidad: parseInt(this.cantidad),
-                        precio: parseInt(this.precio),
+                        cantidad: cnt/1000,
+                        precio: prc,
                     })
                     this.cantidad = 0;
                     this.precio = 0;

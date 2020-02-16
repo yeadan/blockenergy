@@ -3,7 +3,7 @@
           <div class="row" v-if="Object.keys($root.ofertas).length > 0">
             <div  v-for="(oferta, index) in $root.ofertas" :key="index" >
               <div v-if="oferta.hecho == false">
-              <div style="margin-top:5%" class="card text-center col-11" >
+              <div style="margin-top:5%" class="card text-center" >
                 <img class="card-img-top" style="padding:5%" v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor width="2">
                 <p style="padding:5%;position: absolute;top: 15.5%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </p>
                 <div class="card-block">
@@ -36,6 +36,14 @@ export default {
       this.ofertar()
     },
     mounted() {
+      // Función para manejar el error de Metamask al cancelar las
+      // transacciones. Si detecta el error, desbloquea los botones
+      window.onerror = function(message, source, line, column, error) {
+         if (error.message == 'Number.isInteger is not a function') {
+          this.buttonOff = false
+          $(':button').prop('disabled', false);
+        }
+      }
       // Coge todas las ofertas de la blockchain y las 
       //pasa a $root.ofertas
       energy.methods
@@ -51,10 +59,10 @@ export default {
               hecho: result[i].done,
               id: result[i].id,
               cantidad: result[i].amount,
-              precio: result[i].price,
+              precio: result[i].price/1000,
+              gwei: result[i].totalGWEI
             })
         }
-       // console.log(this.$root.ofertas)
     });
   },
   methods: {
@@ -64,7 +72,7 @@ export default {
                     console.log(this.$root.proba)
       })
     },
-    prueba: function (sergio) {
+    comprueba: function (sergio) {
       if (sergio == this.$root.proba) return false
       else return true 
     },
@@ -72,22 +80,29 @@ export default {
       return makeBlockie(result)
     },
     comprar: function (comprador,indice) {
-      if (this.prueba(comprador) == false) {
+
+      if (this.comprueba(comprador) == false) {
         swal('Error', 'No puedes comprar tu propia energía','error')
         this.ofertar()
         return
       }
+      let eth = parseFloat(document.getElementById("eth").innerHTML)  
+      let gwei = parseInt((this.$root.ofertas[indice].precio/eth)*1000000000) //lo que cuesta en gwei
+
+      //bloqueamos botones
       this.buttonOff = true
+
       energy.methods.
-      doneAuction(indice)
+      doneAuction(indice,gwei)
       .send({ from: this.$root.proba })
       .then(() => {
         // Actualizamos para vista más rápida
         this.$root.ofertas[indice].hecho = true;
+        this.$root.ofertas[indice].gwei = gwei;
         this.buttonOff = false
-      return energy.methods.returnAllAuctions().call();
-      }).catch(function(e){ 
-      console.log('error')})                 
+        return energy.methods.returnAllAuctions().call();
+      })              
+
       // Actualiza los valores de la batería y el globalTotal
       // *** Uso de la batería desactualizado ***
       //this.$root.batteryTotal += parseInt(this.$root.ofertas[oferta_id].cantidad)

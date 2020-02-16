@@ -10,7 +10,7 @@
 * [Vue.js](https://vuejs.org/) - Framework de Javascript utilizado
 * [web3.js](https://github.com/ethereum/web3.js/) - Librería de Javascript utilizada para interactuar con la blockchain de Ethereum   
 * [Remix](https://remix.ethereum.org/) - IDE de Solidity para crear, compilar y probar smart contracts
-* [Metamask](https://metamask.io/) - Plugin de Chrome que hace de puente entre la dApp y el navegador
+* [Metamask](https://metamask.io/) - Plugin de Chrome que hace de puente entre la dApp y el navegador navegador
 
 ## Dependencias:
   "[ethereum-blockies-base64](https://https://www.npmjs.com/package/ethereum-blockies-base64)" - Librería para generar identidades como bloques en PNG, codificados en base64   
@@ -20,14 +20,13 @@
 
 
 
-
 ## Ejecución
 
 Clona este repositorio en local e instala las dependencias como sigue:
 
 ```bash
-git clone https://github.com/yeadan/blockenergy
-cd blockenergy
+git clone https://github.com/yeadan/blockenergy-v.1.2
+cd blockenergy-v.1.2
 npm install
 ```
 Instala la extensión de [Metamask](https://metamask.io/), que será el enlace con la blockchain. En el metamask escoge la red de pruebas Ropsten y créate algunas direcciones con ethers.
@@ -74,19 +73,24 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 #### Bugs conocidos:
 
  - En Metamask, bajo algunas condiciones, los cambios de direcciones no se reflejan automáticamente  
- - Si se cancela el intento de borrado de una oferta (desde Metamask) se quedan bloqueados los botones hasta que se cambia de sección, o bien se refresca la página    
 
 #### Próximos cambios:
 
- - Añadir más restricciones (requires) en las funciones del smart contract   
- - Optimizar más el código de los smart contracts para reducir el *gas* utilizado   
- - Aislas las funciones repetidas en compras y ventas (y posiblemente en Historial) 
- - Posible: cambiar el precio en Kw/h en vez de w/h y multiplicar? para guardarlo en Ethereum     
+ - Añadir más restricciones (requires) en las funciones del smart contract?   
+ - Optimizar más el código de los smart contracts para reducir el *gas* utilizado?   
+ - Aislar las funciones repetidas en compras y ventas (y posiblemente en Historial)?    
  
  #### Hecho v3
- - Cambiados cantidad y precio a integer, y obviados los decimales   
+ - Ventas: Antes de enviarlos, se pasan cantidad y precio a integer por si tuvieran decimales   
  - Ventas: Al hacer click en un botón se bloquean todos hasta terminar una transacción   
  - Ventas: Se actualiza automáticamente al terminar una transacción   
  - Compras: Al hacer click en un botón se bloquean todos hasta terminar una transacción   
  - Compras: Separado el vue component en dos partes al estilo de ventas (comprar y ComprarForm)   
  - Historial: Cambiado el centrado de los items, quitado el center   
+ - Actualizada librería web3.js a la versión 1.2.6   
+ - Añadida función en compras y ventas para manejar un error, que solo pasa en Metamask, al rechazar voluntariamente una transacción   
+ - Bateria: Añadida función para saber el precio actual de la cryptomoneda Ether   
+ - Añadido el total en GWEI en el Smart Contract   
+ - Ventas: No se pueden poner a la venta menos de 100w   
+ - Ventas: Los precios serán por Kw/h y se multiplicarán por 1000 para guardar el w/h   
+ - Compras: Añadido el eth actual que cuesta la compra (para futuro pago)   

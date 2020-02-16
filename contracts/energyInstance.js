@@ -1,7 +1,7 @@
 import web3 from './web3'
 
 // Dirección del creador del contrato
-const address = "0x03c33C46eC6EE9265f9374b98363532516Dd40bA"
+const address = "0xd8C13dfDCC0428e23f7A0bb8b4B1c5Ee66EcB3Da"
 
 //ABI del contrato
 const abi = [
@@ -13,9 +13,9 @@ const abi = [
 				"type": "uint256"
 			},
 			{
-				"internalType": "int256",
+				"internalType": "uint256",
 				"name": "_price",
-				"type": "int256"
+				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
@@ -47,6 +47,11 @@ const abi = [
 				"internalType": "uint256",
 				"name": "_index",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_GWEI",
+				"type": "uint256"
 			}
 		],
 		"name": "doneAuction",
@@ -71,13 +76,18 @@ const abi = [
 						"type": "uint256"
 					},
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "price",
-						"type": "int256"
+						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalGWEI",
 						"type": "uint256"
 					},
 					{

@@ -14,7 +14,7 @@
     "sweetalert": "^2.1.2",
     "vue": "^2.6.6",
     "vue-router": "^3.1.5",
-    "web3": "^1.0.0-beta.37"
+    "web3": "^1.2.6"
   },
   "browserslist": [
     "> 1%",
@@ -27,7 +27,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.2.1",
-    "css-loader": "^0.28.7",
+    "css-loader": "^3.4.2",
     "file-loader": "^1.1.4",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.6.11",

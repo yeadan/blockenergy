@@ -83,6 +83,6 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
  - Arreglado bug de cambio de direcciones en Metamask: Añadida función en App.vue cada 500ms que mira si hay cambios. Quitados los controles de cambio de address en compras, ventas e historial   
  - Historial: Añadido mostrar la fecha de la compra. Creada función que utiliza el timestamp del ID y lo pasa a formato fecha local   
  - Batería: Añadida función para controlar que los valores del input vayan de 0 a 15000 (máximo definido por ahora)   
- - Batería: Eelacionada la batería con las ventas/compras. Con las compras sale el nivel actual de la batería y con las ventas sale el nivel actual menos las ofertas que se tienen a la venta, para que no se pueda poner a la venta más energía de la que se dispone   
+ - Batería: Relacionada la batería con las ventas/compras. Con las compras sale el nivel actual de la batería y con las ventas sale el nivel actual menos las ofertas que se tienen a la venta, para que no se pueda poner a la venta más energía de la que se dispone   
  - Inicio: Añadido el Carousel que ya estaba hecho a la página de inicio, donde se han oscurecidas dos de las fotos   
  - Añadido un favicon al proyecto   

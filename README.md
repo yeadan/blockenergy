@@ -48,7 +48,7 @@ Página de inicio. Un Carousel con 3 imágenes como presentación
 ### Comprar
 Página donde se pueden ver las ofertas de energía y comprarlas   
 
-__Restricciones__: 
+__Restricciones__:   
 No se puede aceptar una oferta propia   
 No se pueden aceptar ofertas ya ejecutadas   
 ~~No se puede comprar energía si no hay espacio en tu batería~~ (no implementado)   
@@ -57,7 +57,7 @@ No se pueden aceptar ofertas ya ejecutadas
 ### Vender
 Página para poder crear y borrar ofertas de energía  
 
-__Restricciones__: 
+__Restricciones__:   
 Solo se ven las ofertas propias   
 Solo puedes vender una cantidad de energía si está disponible en tu batería   
 Los precios y las cantidades de las ofertas tienes que ser números  positivos   

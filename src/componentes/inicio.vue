@@ -1,7 +1,7 @@
 <template>
 
 <div>
-  INICIO
+<carousel></carousel>
 </div>
 
 </template>
@@ -16,6 +16,10 @@ export default {
   components: {
     bateria: Bateria,
     carousel: Carousel
+  },
+  methods: {
+    
   }
 }
+
 </script>

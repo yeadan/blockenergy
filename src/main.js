@@ -13,11 +13,10 @@ const router = new VueRouter({
 
 const vm = new Vue({
   data: { 
-    globalTotal: Number=0,
-    batteryTotal: Number=0,
-    etherPrice: Number=1,
-    proba: '',
-    ofertas: []
+    globalTotal: Number=0,      //Energía utilizada
+    batteryTotal: Number=10000, //Energía en la batería
+    proba: '',                  //Adress actual
+    ofertas: []                 //Array de ofertas
   },
   router,
   render: h => h(App)

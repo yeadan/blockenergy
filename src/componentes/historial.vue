@@ -1,22 +1,23 @@
 <template>
   <div class="jumbotron">
     <div class="row ">
-      <div class="col-12">
+      <div class="col">
         <h2 style="margin-bottom:25px" align="center"> Historial de ventas </h2>
         <div class="container">
           <div class="row" v-if="Object.keys($root.ofertas).length > 0">
-            <div v-for="(oferta, index) in $root.ofertas" :key="index">
-              <div v-if="oferta.hecho == true" style="margin-bottom:25px" class="card text-center" >
+            <div class=" min-vw-75 max-hw-100" v-for="(oferta, index) in $root.ofertas" :key="index">
+              <div v-if="oferta.hecho == true"  class="card text-center col-11" >
                 <img class="card-img-top img-center" style="padding:5%" 
                   v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor >
-                <p style="padding:5%;position: absolute;top: 15%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </p>
+                <p style="padding:5%;position: absolute;top: 15%;left: 50%;transform: translate(-50%, -50%);text-align: center;" v-bind:title=oferta.vendedor>Vendedor </p>
                 <div class="card-block">
-                  <p style="margin:5px" align="left" class="card-text"><strong>Precio: </strong><small>{{ oferta.precio }}€/Wh</small></p>
-                  <p style="margin:5px" align="left" class="card-text"><strong>Cantidad: </strong><small> {{oferta.cantidad }}W</small></p>
-                  <p style="margin:5px" align="left" class="card-text"><strong>Total: </strong><small>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
-                  <p style="margin:5px" align="left" class="card-text"><strong>Eth: </strong><small>{{(oferta.gwei/1000000000)}}Ξ </small></p>                  
+                  <p style="margin:5px" align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
+                  <p style="margin:5px" align="left" class="card-text"><small><strong>Cantidad: </strong> {{oferta.cantidad }}W</small></p>
+                  <p style="margin:5px" align="left" class="card-text"><small><strong>Total: </strong>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
+                  <p style="margin:5px" align="left" class="card-text"><small><strong>Eth: </strong>{{(oferta.gwei/1000000000).toFixed(7)}}Ξ </small></p>                  
+                  <p style="margin:5px" align="left" class="card-text"><small><strong>Fecha: </strong>{{ timestampToDate(oferta.id) }}</small></p>                  
                   <img class="card-img" style="padding:5%" v-bind:src="blockie(oferta.comprador)" v-bind:title=oferta.comprador width="2">
-                  <p style="padding:5%;position: absolute;top: 75%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.comprador>Comprador </p>
+                  <p style="padding:5%;position: absolute;top: 85%;left: 50%;transform: translate(-50%, -50%);text-align: center;" v-bind:title=oferta.comprador>Comprador </p>
                 </div>
               </div>
             </div>
@@ -37,12 +38,8 @@ import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
 
 export default {
-  name: 'APP',
   components: {
     bateria: Bateria
-  },
-  beforeMount(){
-    this.ofertar()
   },
   mounted() {
     // Coge todas las ofertas de la blockchain y las pasa a $root.ofertas
@@ -75,12 +72,9 @@ export default {
       if (result != undefined)
         return makeBlockie(result)
     },
-    // Actualiza la cuenta actual
-    ofertar: function () {
-      web3.eth.getAccounts().then((accounts) => {
-        this.$root.proba = accounts[0];
-        console.log(this.$root.proba)
-      })
+    timestampToDate: function (timestamp) {
+      var date = new Date(timestamp*1);
+      return date.toLocaleString();
     }
   }
 }

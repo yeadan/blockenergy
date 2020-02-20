@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.3.0
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.4.0
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   
 ## Prerrequisitos
@@ -25,8 +25,8 @@
 Clona este repositorio en local e instala las dependencias como sigue:
 
 ```bash
-git clone https://github.com/yeadan/blockenergy-v.1.2
-cd blockenergy-v.1.2
+git clone https://github.com/yeadan/blockenergy
+cd blockenergy
 npm install
 ```
 Instala la extensión de [Metamask](https://metamask.io/), que será el enlace con la blockchain. En el metamask escoge la red de pruebas Ropsten y créate algunas direcciones con ethers.
@@ -41,7 +41,7 @@ npm run dev
 ## Estructura 
 
 ### Inicio
-Página de inicio. No implementada en la versión actual  
+Página de inicio. Un Carousel con 3 imágenes como presentación    
 
 ---
 
@@ -59,38 +59,30 @@ Página para poder crear y borrar ofertas de energía
 
 __Restricciones__: 
 Solo se ven las ofertas propias   
-~~Solo puedes vender una cantidad de energía si está disponible en tu batería~~ (no implementado)   
-Los precios y las cantidades de las ofertas tienes que ser números enteros positivos   
+Solo puedes vender una cantidad de energía si está disponible en tu batería   
+Los precios y las cantidades de las ofertas tienes que ser números  positivos   
+No se pueden poner a la venta menos de 100w   
 
  ---
 ### Historial
 
-Página de historial de ventas. Enseña las direcciones del comprador y del vendedor   
+Página de historial de ventas. Enseña las direcciones del comprador y del vendedor, la cantidad de energía vendida y los precios de venta (con su equivalencia en Ether del momento de la venta)   
 
 ---
+### Batería (No implementado)
 
+La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, de ninguna batería, solo aparece una batería donde podemos poner, en un input, de 0 a 15000w (por defecto estará en 10000). Esta cantidad es la que se irá utilizando para las compras y ventas   
 
 #### Bugs conocidos:
 
- - En Metamask, bajo algunas condiciones, los cambios de direcciones no se reflejan automáticamente  
 
 #### Próximos cambios:
 
- - Añadir más restricciones (requires) en las funciones del smart contract?   
- - Optimizar más el código de los smart contracts para reducir el *gas* utilizado?   
- - Aislar las funciones repetidas en compras y ventas (y posiblemente en Historial)?    
  
- #### Hecho v3
- - Ventas: Antes de enviarlos, se pasan cantidad y precio a integer por si tuvieran decimales   
- - Ventas: Al hacer click en un botón se bloquean todos hasta terminar una transacción   
- - Ventas: Se actualiza automáticamente al terminar una transacción   
- - Compras: Al hacer click en un botón se bloquean todos hasta terminar una transacción   
- - Compras: Separado el vue component en dos partes al estilo de ventas (comprar y ComprarForm)   
- - Historial: Cambiado el centrado de los items, quitado el center   
- - Actualizada librería web3.js a la versión 1.2.6   
- - Añadida función en compras y ventas para manejar un error, que solo pasa en Metamask, al rechazar voluntariamente una transacción   
- - Bateria: Añadida función para saber el precio actual de la cryptomoneda Ether   
- - Añadido el total en GWEI en el Smart Contract   
- - Ventas: No se pueden poner a la venta menos de 100w   
- - Ventas: Los precios serán por Kw/h y se multiplicarán por 1000 para guardar el w/h   
- - Compras: Añadido el eth actual que cuesta la compra (para futuro pago)   
+ #### Hecho v4
+ - Arreglado bug de cambio de direcciones en Metamask: Añadida función en App.vue cada 500ms que mira si hay cambios. Quitados los controles de cambio de address en compras, ventas e historial   
+ - Historial: Añadido mostrar la fecha de la compra. Creada función que utiliza el timestamp del ID y lo pasa a formato fecha local   
+ - Batería: Añadida función para controlar que los valores del input vayan de 0 a 15000 (máximo definido por ahora)   
+ - Batería: Eelacionada la batería con las ventas/compras. Con las compras sale el nivel actual de la batería y con las ventas sale el nivel actual menos las ofertas que se tienen a la venta, para que no se pueda poner a la venta más energía de la que se dispone   
+ - Inicio: Añadido el Carousel que ya estaba hecho a la página de inicio, donde se han oscurecidas dos de las fotos   
+ - Añadido un favicon al proyecto   

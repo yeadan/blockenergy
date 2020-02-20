@@ -24,7 +24,6 @@
             <table class="table" >
                 <thead>
                     <tr>
-                 <!--<th scope="col">id</th>!-->
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Total</th>
@@ -33,7 +32,6 @@
                 </thead>
                 <tbody>
                     <tr v-for="(oferta, index) in $root.ofertas " :key="index">
-                        <!--<td>{{ oferta.id }}</td>!-->
                         <td v-if="oferta.hecho == false">
                             <span >
                                 <!-- Dato cantidad -->
@@ -72,40 +70,38 @@ import energy from '../../contracts/energyInstance'
 
 export default {
     data(){ return {
-                    // Input cantidad
-                    cantidad: 0,
-                    // Input precio
-                    precio: 0,
-                    buttonOff: false
+                    cantidad: 0,     //input cantidad
+                    precio: 0,       //input precio
+                    buttonOff: false //bool para bloqueo de botones
                 }
             },
-    beforeMount(){
-      this.ofertar()
-    }, 
     mounted() {
-    // Función para manejar el error de Metamask al cancelar las
-      // transacciones
-      window.onerror = function(message, source, line, column, error) {
-         if (error.message == 'Number.isInteger is not a function') {
-          this.buttonOff = false
-          $(':button').prop('disabled', false);
+        //Mostramos la batería de 'ventas'
+        $("#nivel").hide()
+        $("#disponible").show()
+        // Función para manejar el error de Metamask 
+        // al cancelar las transacciones
+        window.onerror = function(message, source, line, column, error) {
+            if (error.message == 'Number.isInteger is not a function') {
+            this.buttonOff = false
+            $(':button').prop('disabled', false);
         }
       }
-      
+      // Coge todas las ofertas de la blockchain 
+      // y las pasa a $root.ofertas
       this.llenarOfertas()
       
   },
     methods: {
         llenarOfertas: function () {
-            // Coge todas las ofertas de la blockchain y las 
-            //pasa a $root.ofertas
+            //Almacenamos todas las ofertas propias
             energy.methods
             .returnAllAuctions()
             .call()
             .then((result) => {
-                //console.log(result)
                 this.$root.ofertas = []
                 var i=0
+                let glob=0
                 for (i=0;i<result.length;i++) {
                     //Solo las ofertas sin aceptar y que sean del usuario
                     this.$root.ofertas.push({
@@ -116,19 +112,19 @@ export default {
                     gwei: result[i].gwei,
                     hecho: result[i].done
                     })
-                    //para solo mostrar las de uno mismo
+                    //Para solo mostrar las de uno mismo
                     if (result[i].seller != this.$root.proba)
                         this.$root.ofertas[i].hecho = true
+                    //Actualizamos el nivel de la batería
+                    if ((result[i].seller == this.$root.proba) && (!result[i].done)) {
+                        glob += parseInt(result[i].amount)
+                    }
+                    this.$root.globalTotal = glob
                 }
             })
         },
-        ofertar: function () {
-            web3.eth.getAccounts().then((accounts) => {
-                this.$root.proba = accounts[0];
-                //console.log(this.$root.proba)
-            })
-        },
         crearOferta: function () {
+            //Creamos una oferta de energía
             if ( !this.cantidad || !this.precio ) {
                 swal('Error','Rellena todos los campos.','error');
                 return;
@@ -136,24 +132,22 @@ export default {
             let cnt = this.cantidad
             let prc = this.precio*1000
 
-            if ( cnt < 100 ) {
+            if (cnt < 100) {
                 swal('Error','La cantidad no puede ser menos de 100.','error');
                 return;
             }
-            if (  parseInt(prc) <= 0) {
+            if (parseInt(prc) <= 0) {
                 swal('Error','El precio no puede ser tan pequeño.','error');
                 return;
+            }
+            if (cnt > this.$root.batteryTotal - this.$root.globalTotal) {
+                swal('Oops', 'No puedes poner a la venta más energía de la disponible','error');
+                return
             }
             //Bloqueamos los botones
             this.buttonOff = true;
 
-            //
-            //La batería no está actualizada
-            //if (this.$root.globalTotal + parseInt(this.cantidad) >15000) {
-           //     swal('Oops', 'No puedes poner a la venta más energía de la disponible','error');
-            //    return;
-           // }
-            // El id sera un getTime
+            //El id sera un getTime
             var id = new Date().getTime()
             // Llamamos a createAuction en la Blockchain
             return web3.eth.getAccounts().then((accounts) => {
@@ -167,23 +161,23 @@ export default {
                         cantidad: cnt/1000,
                         precio: prc,
                     })
+                    //Borramos inputs, desbloqueamos botones y actualizamos ofertas
                     this.cantidad = 0;
                     this.precio = 0;
                     this.buttonOff = false;
-                    //console.log(this.$root.ofertas)
-                     this.llenarOfertas()
-                    //return energy.methods.returnAllAuctions().call()
+                    this.llenarOfertas()
                 })
             })
                      
-            //Actualizamos la batería - batería no actualizada
-            //this.$root.globalTotal += parseInt(this.cantidad);
-            // Vaciamos el formulario de añadir
             this.cantidad = 0;
             this.precio = 0;
   
         },
         borrarOferta: function (indice) {
+            if (this.$root.proba != this.$root.ofertas[indice].vendedor) {
+                this.llenarOfertas()
+                return
+            }
             this.buttonOff = true
             energy.methods.
             deleteAuction(indice)
@@ -191,15 +185,7 @@ export default {
             .then(( ) => {
                 this.buttonOff = false
                 this.llenarOfertas()
-            })    
-                        /* desactualizado
-                        // Borramos de la lista
-                        this.$root.globalTotal -= parseInt(this.$root.ofertas[oferta_id].cantidad);
-                        
-                       // this.ofertas.splice(oferta_id, 1);
-                        this.$root.ofertas.splice(oferta_id, 1);
-                        */
-                       
+            })                      
         }
     }
 }

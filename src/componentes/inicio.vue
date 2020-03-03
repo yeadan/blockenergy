@@ -1,14 +1,10 @@
 <template>
-
-<div>
-<carousel></carousel>
-</div>
-
+  <div>
+    <carousel></carousel>
+  </div>
 </template>
 
-
 <script>
-
 import Bateria from './bateria.vue'
 import Carousel from './carousel.vue'
 export default {
@@ -16,10 +12,13 @@ export default {
   components: {
     bateria: Bateria,
     carousel: Carousel
+  }, mounted() {
+    $('#price').hide()
+  }, beforeDestroy() {
+    $('#price').show()
   },
   methods: {
     
   }
 }
-
 </script>

@@ -1,23 +1,26 @@
 <template>
-  <div class="jumbotron">
     <div class="row ">
       <div class="col">
-        <h2 style="margin-bottom:25px" align="center"> Historial de ventas </h2>
+        <h2 align="center"> Historial de ventas </h2>
         <div class="container">
           <div class="row" v-if="Object.keys($root.ofertas).length > 0">
-            <div class=" min-vw-75 max-hw-100" v-for="(oferta, index) in $root.ofertas" :key="index">
+            <div class="min-vw-75 max-hw-100" v-for="(oferta, index) in $root.ofertas" :key="index">
               <div v-if="oferta.hecho == true"  class="card text-center col-11" >
-                <img class="card-img-top img-center" style="padding:5%" 
-                  v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor >
-                <p style="padding:5%;position: absolute;top: 15%;left: 50%;transform: translate(-50%, -50%);text-align: center;" v-bind:title=oferta.vendedor>Vendedor </p>
+                <div style="position:relative">
+                  <img class="card-img-top img-center"
+                    v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor >
+                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </div>
+                </div>
                 <div class="card-block">
-                  <p style="margin:5px" align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
-                  <p style="margin:5px" align="left" class="card-text"><small><strong>Cantidad: </strong> {{oferta.cantidad }}W</small></p>
-                  <p style="margin:5px" align="left" class="card-text"><small><strong>Total: </strong>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
-                  <p style="margin:5px" align="left" class="card-text"><small><strong>Eth: </strong>{{(oferta.gwei/1000000000).toFixed(7)}}Ξ </small></p>                  
-                  <p style="margin:5px" align="left" class="card-text"><small><strong>Fecha: </strong>{{ timestampToDate(oferta.id) }}</small></p>                  
-                  <img class="card-img" style="padding:5%" v-bind:src="blockie(oferta.comprador)" v-bind:title=oferta.comprador width="2">
-                  <p style="padding:5%;position: absolute;top: 85%;left: 50%;transform: translate(-50%, -50%);text-align: center;" v-bind:title=oferta.comprador>Comprador </p>
+                  <p align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
+                  <p align="left" class="card-text"><small><strong>Cantidad: </strong> {{oferta.cantidad }}W</small></p>
+                  <p align="left" class="card-text"><small><strong>Total: </strong>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
+                  <p align="left" class="card-text"><small><strong>Eth: </strong>{{(oferta.gwei/1000000000).toFixed(7)}}Ξ </small></p>                  
+                  <p align="left" class="card-text"><small><strong>Fecha: </strong>{{ timestampToDate(oferta.id) }}</small></p>                  
+                  <div style="position:relative">
+                    <img class="card-img"  v-bind:src="blockie(oferta.comprador)" v-bind:title=oferta.comprador width="2">
+                    <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%)" v-bind:title=oferta.comprador>Comprador </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -28,7 +31,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -79,3 +81,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+img {
+  padding:5%
+}
+h2 {
+  margin-bottom:25px
+}
+
+</style>

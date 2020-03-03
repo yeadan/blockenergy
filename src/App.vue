@@ -2,7 +2,13 @@
   <div id="app" class="container">
     <encabezado></encabezado>
 <!-- quitados los keep-alive /!-->
+    <div class="jumbotron my-0" style="position:relative">
+      <div id="price" style=" position: absolute;top: 8px;right: 16px;">
+        <label class="h6">Precio Ether </label>
+        <span style="background-color:#fff " class="px-1 h6" id="eth"></span>
+      </div>
       <router-view></router-view>
+    </div>
     <pie></pie>
   </div>
 </template>
@@ -27,6 +33,16 @@ export default {
         }
       })
     }, 500)
+    //Llamamos a la función que coge el precio del Eth
+    this.getEtherPrice()
+  }, methods: {
+    //Función para coger el valor actual de Eth, de cryptocompare.com
+    getEtherPrice: function (){
+        let url = 'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR'
+        $.ajax({url: url, success: function(result){
+        $("#eth").html(result.EUR+"€")
+        }})
+    }
   }
 }
 </script>

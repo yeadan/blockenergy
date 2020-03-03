@@ -57,24 +57,25 @@
                                 <button :disabled="buttonOff" @click="borrarOferta(index)" class="btn btn-danger">Borrar</button>
                             </span>
                         </td>
-                    
                     </tr>
                 </tbody>
             </table>
         </section>
     </div>
 </template>
+
 <script>
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
+//import 
 
 export default {
     data(){ return {
-                    cantidad: 0,     //input cantidad
-                    precio: 0,       //input precio
-                    buttonOff: false //bool para bloqueo de botones
-                }
-            },
+                cantidad: 0,     //input cantidad
+                precio: 0,       //input precio
+                buttonOff: false //bool para bloqueo de botones
+            }
+        },
     mounted() {
         //Mostramos la batería de 'ventas'
         $("#nivel").hide()

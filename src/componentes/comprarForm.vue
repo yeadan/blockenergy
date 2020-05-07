@@ -33,11 +33,12 @@ export default {
                   buttonOff: false
               }
             },
-    mounted() {
-      // Mostramos la batería de 'compras'
-      $("#nivel").show()
-      $("#disponible").hide()
-
+      beforeDestroy(){
+        $("#disponible").show()
+            },
+      mounted() {
+            //  $("#nivel").hide()
+        $("#disponible").hide()
       // Función para manejar el error de Metamask al cancelar las
       // transacciones. Si detecta el error, desbloquea los botones
       window.onerror = function(message, source, line, column, error) {
@@ -83,6 +84,7 @@ export default {
         swal('Error', 'No puedes comprar tu propia energía','error')
         return
       }
+
       let eth = parseFloat(document.getElementById("eth").innerHTML)  
       let gwei = parseInt((this.$root.ofertas[indice].precio/eth)*1000000000) //lo que cuesta en gwei
 

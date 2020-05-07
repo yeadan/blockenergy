@@ -1,7 +1,7 @@
 {
   "name": "blockenergy",
   "description": "A Vue.js project with Ethereum + web3.js + Metamask",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "author": "Sergio Bosch Vega <sergio.bosch@gmail.com>",
   "license": "MIT",
   "private": true,

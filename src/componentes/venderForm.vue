@@ -2,27 +2,33 @@
     <div class="container">
         <!-- Formulario para añadir ofertas -->
         <!-- Quitadas actualizaciones 8-02-20 -->
-        <section class="form">
-            <form action="" align="center" >
-                <div class=" form-group row">
-                    <label for="cantidad" class="col-2 col-form-label"><strong>Cantidad</strong> </label>
-                    <input required name="cantidad" id="cantidad" v-model="cantidad" v-on:keyup.enter="crearOferta" type="number" class="col-3 form-control" placeholder="W">
-                    <p class="col-1"></p>
-                    <h5 class="col-4 col-form-label"  align="left"> <strong>Total</strong> {{(cantidad/1000*precio).toFixed(2)}} €</h5>
-                    <p class="col-2"></p>
-                    <label class="col-2 col-form-label" for="precio"><strong>Precio</strong></label>
-                    <input v-model="precio" v-on:keyup.enter="crearOferta" type="number" name="precio" placeholder="€/Wh" class="col-3 form-control">
-                    <p class="col-1"></p>
-                <!-- Botón para añadir -->
-                    <input align="left" :disabled="buttonOff" @click="crearOferta" type="button" value="Añadir" class="col-2 btn btn-success form-control">
-                </div>
-            </form>
-        </section>
+        <form class="">
+    <div class="form-group row" >
+    <label for="cantidad" class="col-3 col-form-label"><strong>Cantidad</strong> </label>
+    <div class="col-5">
+    <input class="form-control" required id="cantidad" v-model="cantidad" v-on:keyup.enter="crearOferta" type="number" placeholder="W">
+    </div>
+    <div class="col-4">
+        <h5 class="col-form-label"  align="left"> <strong>Total </strong><span class="bg-white px-1">{{(cantidad/1000*precio).toFixed(2)}}€</span></h5>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="precio"><strong>Precio</strong></label>
+    <div class="col-5">
+        <input v-model="precio" v-on:keyup.enter="crearOferta" type="number" id="precio" placeholder="€/kWh" class="form-control">
+    </div>
+    <div class="col-4">
+        <input :disabled="buttonOff" @click="crearOferta" type="button" value="Añadir" class="btn btn-success">
+    </div>
+  </div>
+  </form>
+    <br>
+        
         <!-- Tabla donde se muestran los datos -->
         <section class="data">
             <caption>Ofertas</caption>
-            <table class="table" >
-                <thead>
+            <table class="table table-sm" >
+                <thead class="thead">
                     <tr>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
@@ -54,7 +60,7 @@
                         <td v-if="oferta.hecho == false">
                             <span>
                                 <!-- Botón para borrar -->
-                                <button :disabled="buttonOff" @click="borrarOferta(index)" class="btn btn-danger">Borrar</button>
+                                <button :disabled="buttonOff" @click="borrarOferta(index)" class="btn-sm btn btn-danger">Borrar</button>
                             </span>
                         </td>
                     </tr>
@@ -77,9 +83,6 @@ export default {
             }
         },
     mounted() {
-        //Mostramos la batería de 'ventas'
-        $("#nivel").hide()
-        $("#disponible").show()
         // Función para manejar el error de Metamask 
         // al cancelar las transacciones
         window.onerror = function(message, source, line, column, error) {

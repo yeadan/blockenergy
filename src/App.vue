@@ -5,7 +5,7 @@
     <div class="jumbotron my-0" style="position:relative">
       <div id="price" style=" position: absolute;top: 8px;right: 16px;">
         <label class="h6">Precio Ether </label>
-        <span style="background-color:#fff " class="px-1 h6" id="eth"></span>
+        <span class="bg-white px-1 h6" id="eth"></span>
       </div>
       <router-view></router-view>
     </div>
@@ -35,6 +35,7 @@ export default {
     }, 500)
     //Llamamos a la función que coge el precio del Eth
     this.getEtherPrice()
+    this.getBatteryLevel()
   }, methods: {
     //Función para coger el valor actual de Eth, de cryptocompare.com
     getEtherPrice: function (){
@@ -42,6 +43,17 @@ export default {
         $.ajax({url: url, success: function(result){
         $("#eth").html(result.EUR+"€")
         }})
+    },
+    getBatteryLevel: function (){
+      //Mientras no haya batería real, capturaremos un 
+      // número random externamente para simularla
+      let url ='https://www.random.org/integers/?num=1&min=10000&max=15000&col=1&base=10&format=plain&rnd=new'
+      $.ajax({url: url, success: function(result){
+        console.log("Total de la batería: "+result)
+        }}).then( (value) => {
+                this.$root.batteryTotal = value
+            })
+        
     }
   }
 }

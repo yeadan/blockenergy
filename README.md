@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.5.0
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.6.0
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   
 ## Prerrequisitos
@@ -71,17 +71,20 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 ---
 ### Batería (No implementado)
 
-La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, de ninguna batería, solo aparece una batería donde podemos poner, en un input, de 0 a 15000w (por defecto estará en 10000). Esta cantidad es la que se irá utilizando para las compras y ventas   
+La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas   
 
-#### Bugs conocidos:
+#### Bugs conocidos:   
 
 
-#### Próximos cambios:
-
+#### Próximos cambios:   
+   
  
-#### Hecho v5   
-- Pie: Cambiado color al mismo que la cabecera   
-- Cabecera: Reconstruida la cabecera con navs/collpase   
-- Vender/comrpar/historial: Ajustado el margin inferior del jumbotron a 0 (bootstrap)   
-- Batería: Hechos cambios visuales del % de batería que queda   
-- Precio Ether añadido a App.js y quitado de batería   
+#### Hecho v6   
+Ventas: Cambiado el formulario a mejor resultado/responsive   
+Encabezado: Expand del nav-bar reducido a md   
+Web3: Añadido alert por si no tienes Metamask (o equivalentes)   
+Encabezado: Añadido button para collapse (responsive)   
+Batería: Cambiado valor de la batería: Ahora se coge con un get (asíncrono) un valor externo random, para que se parezca más a como debería ser.    
+Batería: Quitado el input. En ventas también salrá el nivel de la batería, no solo el disponible    
+Pie: Añadido año al pie de página    
+404: Añadido componente notfound.vue para los errores 404 (página no encontrada)    

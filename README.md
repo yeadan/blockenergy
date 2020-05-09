@@ -82,4 +82,5 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
 #### Hecho v7   
 General: Cambiados los v-if dentro de los v-for por computed para mejorar el render (así no evalúa lo que no queremos)   
 General: Mejorado el formateo de línea en los ficheros   
+General: Actualizada versión Webpack   
 Web3: Añadido alert por si no se tiene instalado Metamask   

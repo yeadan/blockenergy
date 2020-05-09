@@ -73,13 +73,12 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 
 La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas   
 
-#### Bugs conocidos:   
-
-
+   
 #### Próximos cambios:   
+Cambiar la batería a algo fijo y que se cambie dinámicamente el contenido   
    
  
-#### Hecho v7   
+#### Hecho v7:   
 General: Cambiados los v-if dentro de los v-for por computed para mejorar el render (así no evalúa lo que no queremos)   
 General: Mejorado el formateo de línea en los ficheros   
 General: Actualizada versión Webpack   

@@ -15,7 +15,7 @@ const vm = new Vue({
   data: { 
     globalTotal: Number=0,      //Energía utilizada
     batteryTotal: Number=10000, //Energía en la batería
-    proba: '',                  //Adress actual
+    proba: '',                  //Address actual
     ofertas: []                 //Array de ofertas
   },
   router,

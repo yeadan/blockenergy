@@ -28,11 +28,11 @@ import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 
 export default {
-        data() { 
-          return {
-              
-          }
-        }, 
+  data() { 
+    return {
+        
+    }
+  }, 
        
   methods: {    
     // Para el input de energía. Función prescindible

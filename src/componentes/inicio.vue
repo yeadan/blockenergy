@@ -16,9 +16,6 @@ export default {
     $('#price').hide()
   }, beforeDestroy() {
     $('#price').show()
-  },
-  methods: {
-    
   }
 }
 </script>

@@ -1,7 +1,7 @@
 {
   "name": "blockenergy",
   "description": "A Vue.js project with Ethereum + web3.js + Metamask",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "author": "Sergio Bosch Vega <sergio.bosch@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -12,6 +12,7 @@
   "dependencies": {
     "ethereum-blockies-base64": "^1.0.2",
     "sweetalert": "^2.1.2",
+    "uglify-es": "^3.3.9",
     "vue": "^2.6.6",
     "vue-router": "^3.1.5",
     "web3": "^1.2.6"
@@ -27,8 +28,9 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.2.1",
-    "css-loader": "^3.4.2",
+    "css-loader": "^1.0.1",
     "file-loader": "^1.1.4",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^3.6.0",

@@ -53,7 +53,6 @@ export default {
         }}).then( (value) => {
                 this.$root.batteryTotal = value
             })
-        
     }
   }
 }

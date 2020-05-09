@@ -1,27 +1,25 @@
 <template>
-<div class="container">
-          <div class="row" v-if="Object.keys($root.ofertas).length > 0">
-            <div v-for="(oferta, index) in $root.ofertas" :key="index" >
-              <div v-if="oferta.hecho == false" class="col-12">
-              <div style="margin-top:5%" class="card text-center" >
-                <div style="position: relative">
-                  <img class="card-img-top" v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor width="2">     
-                  <div style="position: absolute;top: 50%;  left: 50%;;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </div>
-                </div>
-                <div class="card-block">
-                  <p align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
-                  <p align="left" class="card-text"><small><strong>Cantidad: </strong>{{oferta.cantidad }}W</small></p>
-                  <p align="left" class="card-text"><small><strong>Total: </strong>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
-                  <button class="btn btn-success boton" :disabled="buttonOff" @click="comprar(oferta.vendedor,index)">Comprar</button>
-                </div>
-              </div>
-              </div>
-            </div>
+  <div class="container">
+    <div class="row" v-if="Object.keys($root.ofertas).length > 0">
+      <div v-for="(oferta, index) in showHechoFalse" :key="index" >
+        <div style="margin:5%" class="card text-center" >
+          <div style="position: relative">
+            <img class="card-img-top" v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor width="2">     
+            <div style="position: absolute;top: 50%;  left: 50%;;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </div>
           </div>
-          <div v-else class="alert alert-danger" role="alert">
-            Actualmente no hay ofertas disponibles
+          <div class="card-block">
+            <p align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
+            <p align="left" class="card-text"><small><strong>Cantidad: </strong>{{oferta.cantidad }}W</small></p>
+            <p align="left" class="card-text"><small><strong>Total: </strong>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
+            <button class="btn btn-success boton" :disabled="buttonOff" @click="comprar(oferta.vendedor,index)">Comprar</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div v-else class="alert alert-danger" role="alert">
+      Actualmente no hay ofertas disponibles
+    </div>
+  </div>
 </template>
 <script>
 import web3 from '../../contracts/web3'
@@ -53,7 +51,7 @@ export default {
       .returnAllAuctions()
       .call()
       .then((result) => {
-        console.log(result)
+        //console.log(result)
         this.$root.ofertas = []
         var i=0
         for (i=0;i<result.length;i++) {
@@ -67,6 +65,14 @@ export default {
             })
         }
     });
+  },
+  computed: {
+    // Solo mostraremos en el v-for cuando oferta.hecho == false
+    showHechoFalse: function () {
+      return this.$root.ofertas.filter(function (oferta) {
+        return oferta.hecho == false
+      })
+    }
   },
   methods: {
     // Comprueba que la address es la actual del Metamask
@@ -114,6 +120,6 @@ img {
   margin:5px
 }
 .card-text {
-    margin:5px
+  margin:5px
 }
 </style>

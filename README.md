@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.6.0
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.7.0
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   
 ## Prerrequisitos
@@ -79,12 +79,7 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
 #### Próximos cambios:   
    
  
-#### Hecho v6   
-Ventas: Cambiado el formulario a mejor resultado/responsive   
-Encabezado: Expand del nav-bar reducido a md   
-Web3: Añadido alert por si no tienes Metamask (o equivalentes)   
-Encabezado: Añadido button para collapse (responsive)   
-Batería: Cambiado valor de la batería: Ahora se coge con un get (asíncrono) un valor externo random, para que se parezca más a como debería ser.    
-Batería: Quitado el input. En ventas también salrá el nivel de la batería, no solo el disponible    
-Pie: Añadido año al pie de página    
-404: Añadido componente notfound.vue para los errores 404 (página no encontrada)    
+#### Hecho v7   
+General: Cambiados los v-if dentro de los v-for por computed para mejorar el render (así no evalúa lo que no queremos)   
+General: Mejorado el formateo de línea en los ficheros   
+Web3: Añadido alert por si no se tiene instalado Metamask   

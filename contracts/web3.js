@@ -16,6 +16,7 @@ if (window.ethereum) {
   console.log(
     'Non-Ethereum browser detected. You should consider trying MetaMask!'
   );
+  alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
 }
 console.log(web3);
 export default web3;

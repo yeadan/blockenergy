@@ -10,7 +10,7 @@
 * [Vue.js](https://vuejs.org/) - Framework de Javascript utilizado
 * [web3.js](https://github.com/ethereum/web3.js/) - Librería de Javascript utilizada para interactuar con la blockchain de Ethereum   
 * [Remix](https://remix.ethereum.org/) - IDE de Solidity para crear, compilar y probar smart contracts
-* [Metamask](https://metamask.io/) - Plugin de Chrome que hace de puente entre la dApp y el navegador navegador
+* [Metamask](https://metamask.io/) - Plugin de Chrome que hace de puente entre la dApp y el navegador   
 
 ## Dependencias:
   "[ethereum-blockies-base64](https://https://www.npmjs.com/package/ethereum-blockies-base64)" - Librería para generar identidades como bloques en PNG, codificados en base64   
@@ -83,3 +83,8 @@ General: Cambiados los v-if dentro de los v-for por computed para mejorar el ren
 General: Mejorado el formateo de línea en los ficheros   
 General: Actualizada versión Webpack   
 Web3: Añadido alert por si no se tiene instalado Metamask   
+      
+      
+<a href="https://www.buymeacoffee.com/yeadan" rel="nofollow"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" data-canonical-src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" style="max-width:100%;"></a>
+
+<a href="https://www.buymeacoffee.com/yeadan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 26px !important;width: 109px !important;" ></a>   

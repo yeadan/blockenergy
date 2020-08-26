@@ -85,6 +85,4 @@ General: Actualizada versión Webpack
 Web3: Añadido alert por si no se tiene instalado Metamask   
       
       
-<a href="https://www.buymeacoffee.com/yeadan" rel="nofollow"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" data-canonical-src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" style="max-width:100%;"></a>
-
-<a href="https://www.buymeacoffee.com/yeadan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 26px !important;width: 109px !important;" ></a>   
+<a href="https://www.buymeacoffee.com/yeadan" target="_blank"><img src="https://github.com/yeadan/blockenergy/blob/master/public/default-orange.png" alt="Buy Me A Coffee" style="height: 26px !important;width: 109px !important;" ></a>   

@@ -3,7 +3,7 @@
     <div class="col">
       <h2 align="center"> Historial de ventas </h2>
       <div class="container">
-        <div class="row" v-if="Object.keys($root.ofertas).length > 0">
+        <div class="row" v-if="Object.keys(historial).length > 0">
           <div class="min-vw-75 max-hw-100" v-for="(oferta, index) in showHechoTrue" :key="index">
             <div class="card text-center col-11" >
               <div style="position:relative">
@@ -40,22 +40,25 @@ import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
 
 export default {
+  data() { 
+    return {
+      historial: []
+    }
+  },
   components: {
     bateria: Bateria
   },
   mounted() {
-    // Coge todas las ofertas de la blockchain y las pasa a $root.ofertas
+    // Coge todas las ofertas de la blockchain y las pasa a historial
     energy.methods
     .returnAllAuctions()
     .call()
     .then((result) => {
       //console.log(result)
-      this.$root.ofertas = []
+      this.historial = []
       var i=0
       for (i=0;i<result.length;i++) {
-        // Solo las hechas
-        if (result[i].done) {
-          this.$root.ofertas.push({
+          this.historial.push({
             vendedor: result[i].seller,
             id: result[i].id,
             cantidad: result[i].amount,
@@ -64,14 +67,13 @@ export default {
             hecho: result[i].done,
             gwei: result[i].totalGWEI
           })
-        }
       }
     });
   },
   computed: {
     // Solo mostraremos en el v-for cuando oferta.hecho == true
     showHechoTrue: function () {
-      return this.$root.ofertas.filter(function (oferta) {
+      return this.historial.filter(function (oferta) {
         return oferta.hecho == true
       })
     }

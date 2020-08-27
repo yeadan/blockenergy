@@ -15,8 +15,7 @@ const vm = new Vue({
   data: { 
     globalTotal: Number=0,      //Energía utilizada
     batteryTotal: Number=10000, //Energía en la batería
-    proba: '',                  //Address actual
-    ofertas: []                 //Array de ofertas
+    address: '',                  //Address actual 
   },
   router,
   render: h => h(App)

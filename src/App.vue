@@ -23,13 +23,13 @@ export default {
     encabezado: Encabezado,
     pie: Pie
   }, beforeMount() {
-    // Ponemos en proba la address actual, 
+    // Ponemos en 'adress' la address actual, 
     // para los cambios en Metamask, cada 500ms
     window.setInterval(() => {
       web3.eth.getAccounts().then((accounts) => {
-        if (this.$root.proba != accounts[0]) {
-          this.$root.proba = accounts[0];
-          console.log("Cambio de address: ",this.$root.proba);
+        if (this.$root.adress != accounts[0]) {
+          this.$root.adress = accounts[0];
+          console.log("Cambio de address: ",this.$root.adress);
         }
       })
     }, 500)

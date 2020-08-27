@@ -13,8 +13,14 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-3 col-form-label" for="precio"><strong>Precio</strong></label>
-		<div class="col-5">
+		
+		<label class="col-2 col-form-label" for="precio"><strong>Precio</strong></label>
+		<div class="col-2 col-form-label">
+		<label class="" for="checkbox">Free</label>
+		<input class="" type="checkbox" id="checkbox" v-model="checked">
+		</div>
+	
+		<div class="col-4">
 			<input v-model="precio" v-on:keyup.enter="crearOferta" type="number" id="precio" placeholder="€/kWh" class="form-control">
 		</div>
 		<div class="col-4">
@@ -68,10 +74,13 @@
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 export default {
-	data(){ return {
+	data(){ 
+		return {
+		checked: false,
 		cantidad: 0,     //input cantidad
 		precio: 0,       //input precio
-		buttonOff: false //bool para bloqueo de botones
+		buttonOff: false, //bool para bloqueo de botones
+		ofertas: []
 		}
 	},
 	mounted() {
@@ -84,13 +93,13 @@ export default {
 			}
 		}
 		// Coge todas las ofertas de la blockchain 
-		// y las pasa a $root.ofertas
+		// y las pasa a ofertas
 		this.llenarOfertas()
 	},
 	computed: {
 		// Solo mostraremos en el v-for cuando oferta.hecho == false
 		showHechoFalse: function () {
-			return this.$root.ofertas.filter(function (oferta) {
+			return this.ofertas.filter(function (oferta) {
 				return oferta.hecho == false
 			})
 		}
@@ -102,12 +111,11 @@ export default {
 			.returnAllAuctions()
 			.call()
 			.then((result) => {
-				this.$root.ofertas = []
 				var i=0
 				let glob=0
 				for (i=0;i<result.length;i++) {
 					//Solo las ofertas sin aceptar y que sean del usuario
-					this.$root.ofertas.push({
+					this.ofertas.push({
 					vendedor: result[i].seller,
 					id: result[i].id,
 					cantidad: result[i].amount,
@@ -116,10 +124,10 @@ export default {
 					hecho: result[i].done
 					})
 					//Para solo mostrar las de uno mismo
-					if (result[i].seller != this.$root.proba)
-							this.$root.ofertas[i].hecho = true
+					if (result[i].seller != this.$root.adress)
+							this.ofertas[i].hecho = true
 					//Actualizamos el nivel de la batería
-					if ((result[i].seller == this.$root.proba) && (!result[i].done)) {
+					if ((result[i].seller == this.$root.adress) && (!result[i].done)) {
 							glob += parseInt(result[i].amount)
 					}
 					this.$root.globalTotal = glob
@@ -158,7 +166,7 @@ export default {
 				createAuction(id,parseInt(prc),parseInt(cnt))
 				.send({ from: accounts[0] })
 				.then(() => {
-					this.$root.ofertas.push({
+					this.ofertas.push({
 						vendedor: accounts[0],
 						id: + new Date(),
 						cantidad: cnt/1000,
@@ -175,14 +183,14 @@ export default {
 			this.precio = 0;
 		},
 		borrarOferta: function (indice) {
-			if (this.$root.proba != this.$root.ofertas[indice].vendedor) {
+			if (this.$root.adress != this.ofertas[indice].vendedor) {
 				this.llenarOfertas()
 				return
 			}
 			this.buttonOff = true
 			energy.methods.
 			deleteAuction(indice)
-			.send({ from: this.$root.proba })
+			.send({ from: this.$root.adress })
 			.then(( ) => {
 				this.buttonOff = false
 				this.llenarOfertas()
@@ -191,3 +199,9 @@ export default {
 	}
 }
 </script>
+<style scoped>
+#checkbox {
+	position:relative;
+	top: 2px;
+}
+</style>

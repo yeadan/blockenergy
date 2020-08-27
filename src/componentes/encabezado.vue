@@ -3,7 +3,7 @@
 		<nav class="navbar navbar-expand-md navbar-dark bg-secondary">  
 			<router-link style="text-decoration:none" class="navbar-brand text-white" to="/"><h2>BlockEnergy</h2></router-link>
 			<a class="navbar-brand mr-auto" href="/">
-				<img src="/public/logo200x200.png" style="height:50px;width:auto" />
+				<img src="../../public/logo200x200.png" style="height:50px;width:auto" />
 			</a>
 		<button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#mi-navbar">
 			<span class="navbar-toggler-icon"></span>

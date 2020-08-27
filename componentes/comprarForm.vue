@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row" v-if="Object.keys($root.ofertas).length > 0">
+    <div class="row" v-if="Object.keys(ofertas).length > 0">
       <div v-for="(oferta, index) in showHechoFalse" :key="index" >
         <div style="margin:5%" class="card text-center" >
           <div style="position: relative">
@@ -28,7 +28,8 @@ import makeBlockie from 'ethereum-blockies-base64'
 
 export default {
       data(){ return {
-                  buttonOff: false
+                  buttonOff: false,
+                  ofertas:[]
               }
             },
       beforeDestroy(){
@@ -46,16 +47,14 @@ export default {
         }
       }
       // Coge todas las ofertas de la blockchain 
-      //y las pasa a $root.ofertas
+      //y las pasa a 'ofertas'
       energy.methods
       .returnAllAuctions()
       .call()
       .then((result) => {
-        //console.log(result)
-        this.$root.ofertas = []
         var i=0
         for (i=0;i<result.length;i++) {
-            this.$root.ofertas.push({
+            this.ofertas.push({
               vendedor: result[i].seller,
               hecho: result[i].done,
               id: result[i].id,
@@ -69,7 +68,7 @@ export default {
   computed: {
     // Solo mostraremos en el v-for cuando oferta.hecho == false
     showHechoFalse: function () {
-      return this.$root.ofertas.filter(function (oferta) {
+      return this.ofertas.filter(function (oferta) {
         return oferta.hecho == false
       })
     }
@@ -77,7 +76,7 @@ export default {
   methods: {
     // Comprueba que la address es la actual del Metamask
     comprueba: function (addr) {
-      if (addr == this.$root.proba) return false
+      if (addr == this.$root.adress) return false
       else return true 
     },
     //Para las imágenes personalizadas (blockies) de cada address
@@ -90,20 +89,23 @@ export default {
         swal('Error', 'No puedes comprar tu propia energía','error')
         return
       }
-
+      if (this.ofertas[indice].cantidad + this.$root.batteryTotal > 15000) {
+        swal('Error', 'No cabe tanta energía en tu batería','error')
+        return
+      }
       let eth = parseFloat(document.getElementById("eth").innerHTML)  
-      let gwei = parseInt((this.$root.ofertas[indice].precio/eth)*1000000000) //lo que cuesta en gwei
+      let gwei = parseInt((this.ofertas[indice].precio/eth)*1000000000) //lo que cuesta en gwei
 
       //Bloqueamos botones
       this.buttonOff = true
       
       //Llamada al Smart Contract
       energy.methods.doneAuction(indice, gwei)
-      .send({ from: this.$root.proba })
+      .send({ from: this.$root.adress })
       .then(() => {
         //Actualizamos para vista más rápida
-        this.$root.ofertas[indice].hecho = true;
-        this.$root.ofertas[indice].gwei = gwei;
+        this.ofertas[indice].hecho = true;
+        this.ofertas[indice].gwei = gwei;
         //Desbloqueamos botones
         this.buttonOff = false
         return energy.methods.returnAllAuctions().call();

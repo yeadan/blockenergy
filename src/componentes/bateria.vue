@@ -1,45 +1,58 @@
 <template>
-<div class="container" align="center" >
-  <div id="nivel">
-    <p><small><strong>Nivel batería</strong>: {{this.$root.batteryTotal}}W </small></p>
-    <div class="container" style="position:relative">
-      <img width="75%" src="../../public/bateria25.png" v-if="((this.$root.batteryTotal/150))<25" />
-      <img width="75%" src="../../public/bateria50.png" v-if="((this.$root.batteryTotal/150))>25&&((this.$root.batteryTotal/150))<51" />
-      <img width="75%" src="../../public/bateria75.png" v-if="((this.$root.batteryTotal/150))>50&&((this.$root.batteryTotal/150))<76" />
-      <img width="75%" src="../../public/bateria100.png" v-if="((this.$root.batteryTotal/150))>76" />
-      <div style="position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);"><small><strong>{{(this.$root.batteryTotal/150).toFixed(1)}}%</strong></small></div>
-    </div>
+<div align="center" >
+  <div id="nivel">  
+	<hr>
+    <p><small><strong>Nivel batería </strong>: {{this.$root.batteryTotal}}W </small></p>
+	<div class="progress-circle" :class="this.circleTotal" >
+		<span>{{(this.$root.batteryTotal/150).toFixed(0)}}%</span>
+		<div class="left-half-clipper">
+			<div class="first50-bar"></div>
+			<div class="value-bar"></div>
+		</div>
+	</div>
+	<hr>
   </div>
   <div id="disponible" >
-    <hr>
     <p><small><strong>Nivel disponible</strong>: {{((this.$root.batteryTotal)-($root.globalTotal)).toFixed(0)}}W</small></p>
-    <div class="container" style="position:relative">
-      <img width="75%" src="../../public/bateria25.png" v-if="((this.$root.batteryTotal/150)-($root.globalTotal/150))<25" />
-      <img width="75%" src="../../public/bateria50.png" v-if="((this.$root.batteryTotal/150)-($root.globalTotal/150))>25&&((this.$root.batteryTotal/150)-($root.globalTotal/150))<51" />
-      <img width="75%" src="../../public/bateria75.png" v-if="((this.$root.batteryTotal/150)-($root.globalTotal/150))>50&&((this.$root.batteryTotal/150)-($root.globalTotal/150))<76" />
-      <img width="75%" src="../../public/bateria100.png" v-if="((this.$root.batteryTotal/150)-($root.globalTotal/150))>76" />
-      <div style="position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);"><small><strong>{{((this.$root.batteryTotal/150)-($root.globalTotal/150)).toFixed(1)}}%</strong></small></div>
-    </div>
+	<div class="progress-circle" align="left" :class="this.circleDispo" >
+		<span>{{((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)}}%</span>
+		<div class="left-half-clipper">
+			<div class="first50-bar"></div>
+			<div class="value-bar"></div>
+		</div>
+	</div>
+	<hr>
   </div>
 </div>
 </template>
 <script>
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
+import '../../src/css-circular-prog-bar.css'
 
 export default {
   data() { 
-    return {
-        
+    return { 
+		circleTotal: '',
+		circleDispo: ''
     }
   }, 
-       
+mounted() {
+	this.changeLevels()
+},
   methods: {    
-    // Para el input de energía. Función prescindible
-    //cuando esté implementada la batería
-    
+    changeLevels: function() {
+		//circleTotal
+		if ((this.$root.batteryTotal/150).toFixed(0) > 50 )
+			this.circleTotal='over50 p'+ (this.$root.batteryTotal/150).toFixed(0)
+		else 
+			this.circleTotal='p'+ (this.$root.batteryTotal/150).toFixed(0)
+		//circleDispo
+		if (((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0) > 50 )
+			this.circleDispo='over50 p'+ ((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)
+		else 
+			this.circleDispo='p'+ ((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)
+	}
   }
 }
 </script>
-
-

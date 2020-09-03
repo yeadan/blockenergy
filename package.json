@@ -1,7 +1,7 @@
 {
   "name": "block_energy",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
+  "version": "8.0.0",
+  "description": "A Vue.js + Ethereum + Web3.js project",
   "author": "Sergio Bosch Vega <sergio.bosch@gmail.com>",
   "private": true,
   "scripts": {

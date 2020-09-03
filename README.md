@@ -73,15 +73,16 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 ### Batería (No implementado)
 
 La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas   
-
+Los indicadores están hechos únicamente con CSS, *[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
    
 #### Próximos cambios:   
-Cambiar la batería a algo fijo y que se cambie dinámicamente el contenido   
+  
    
  
 #### Hecho v8:   
 Footer: Añadido link al repositorio en Github   
 Compras: No se puede comprar energía si no cabe en la batería   
+Batería: Cambiadas las imágenes de las baterías por indicadores progresivos hechos únicamente con CSS, *[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
       
       
 #### Donaciones 

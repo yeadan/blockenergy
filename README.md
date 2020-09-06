@@ -84,6 +84,7 @@ Compras: No se puede comprar energía si no cabe en la batería
 Batería: Cambiadas las imágenes de las baterías por indicadores progresivos hechos únicamente con CSS, [css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
 General: Cambiados los títulos de las páginas de compras, ventas e historial.    
 General: Acortado el span con el precio del Ether   
+General: Webpack migrado de la v3 a la v4. Añadidas más dependencias menores (babel, css...) y reducidas las vulnerabilidades    
       
       
 #### Donaciones 

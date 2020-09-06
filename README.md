@@ -17,7 +17,7 @@
   "[ethereum-blockies-base64](https://https://www.npmjs.com/package/ethereum-blockies-base64)" - Librería para generar identidades como bloques en PNG, codificados en base64   
   "[vue-router](https://router.vuejs.org/)" - Enrutador para Vue.js   
   "[sweetalert](https://sweetalert2.github.io/)" - Reemplazo para la función alert de Javascript  
-  "[Bootstrap 4](https://blog.getbootstrap.com/2019/11/28/bootstrap-4-4-1/)" - Framework de CSS 
+  "[Bootstrap 4](https://blog.getbootstrap.com/2019/11/28/bootstrap-4-4-1/)" - Framework de CSS    
   "[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)" - Progress bar en CSS puro.     
 
 

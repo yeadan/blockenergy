@@ -4,7 +4,6 @@
       <bateria></bateria>
     </div>
     <div class="col-9">
-      <h2 align="center"> Vender energía </h2>
       <venderForm></venderForm>
     </div>
   </div>
@@ -16,6 +15,13 @@ export default {
   components: {
     bateria: Bateria,
     venderForm: VenderForm
+  },
+  mounted() {
+    $("#myTitle").text("Vender energía");
+  
+  },
+  destroyed() {
+    $("#myTitle").text("");
   }
 }
 </script>

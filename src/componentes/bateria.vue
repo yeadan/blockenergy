@@ -13,7 +13,7 @@
 	<hr>
   </div>
   <div id="disponible" >
-    <p><small><strong>Nivel disponible</strong>: {{((this.$root.batteryTotal)-($root.globalTotal)).toFixed(0)}}W</small></p>
+    <p><small><strong>Nivel disponible</strong>: {{((this.$root.batteryTotal)-(this.$root.globalTotal)).toFixed(0)}}W</small></p>
 	<div class="progress-circle" align="left" :class="this.circleDispo" >
 		<span>{{((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)}}%</span>
 		<div class="left-half-clipper">
@@ -38,6 +38,9 @@ export default {
     }
   }, 
 mounted() {
+	this.changeLevels()
+},
+updated() {
 	this.changeLevels()
 },
   methods: {    

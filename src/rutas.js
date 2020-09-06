@@ -5,7 +5,7 @@ import HistorialComponent from './componentes/historial.vue'
 import NotFound from './componentes/notfound.vue'
 
 export const routes = [
-    { path:'', component: InicioComponent},
+    { path:'/', component: InicioComponent},
     { path:'/comprar', component: ComprarComponent},
     { path:'/vender', component: VenderComponent},
     { path:'/historial', component: HistorialComponent},

@@ -18,7 +18,7 @@
   "[vue-router](https://router.vuejs.org/)" - Enrutador para Vue.js   
   "[sweetalert](https://sweetalert2.github.io/)" - Reemplazo para la función alert de Javascript  
   "[Bootstrap 4](https://blog.getbootstrap.com/2019/11/28/bootstrap-4-4-1/)" - Framework de CSS 
-
+  "[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)" - Progress bar en CSS puro.     
 
 
 ## Ejecución
@@ -72,8 +72,7 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 ---
 ### Batería (No implementado)
 
-La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas   
-Los indicadores están hechos únicamente con CSS, *[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
+La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas, donde los indicadores están hechos únicamente con CSS.   
    
 #### Próximos cambios:   
   
@@ -82,7 +81,9 @@ Los indicadores están hechos únicamente con CSS, *[css-circular-prog-bar](http
 #### Hecho v8:   
 Footer: Añadido link al repositorio en Github   
 Compras: No se puede comprar energía si no cabe en la batería   
-Batería: Cambiadas las imágenes de las baterías por indicadores progresivos hechos únicamente con CSS, *[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
+Batería: Cambiadas las imágenes de las baterías por indicadores progresivos hechos únicamente con CSS, [css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
+General: Cambiados los títulos de las páginas de compras, ventas e historial.    
+General: Acortado el span con el precio del Ether   
       
       
 #### Donaciones 

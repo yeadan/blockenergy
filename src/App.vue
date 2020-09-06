@@ -3,11 +3,16 @@
     <encabezado></encabezado>
 <!-- quitados los keep-alive /!-->
     <div class="jumbotron my-0" style="position:relative">
-      <div id="price" style=" position: absolute;top: 8px;right: 16px;">
-        <label class="h6">Precio Ether </label>
+      <div style=" text-align:center;position: absolute;top: 8px;
+        margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center;">   
+        <span class="px-1 h3" id="myTitle"></span>
+      </div>
+      <div id="price" style=" position: absolute;top: 15px;right: 16px;">
+        <label class="h6">ETH </label>
         <span class="bg-white px-1 h6" id="eth"></span>
       </div>
-      <router-view></router-view>
+
+      <router-view :key="$route.fullPath"></router-view>
     </div>
     <pie></pie>
   </div>

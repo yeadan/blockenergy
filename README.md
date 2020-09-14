@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.8.0
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.9.0
 *Esta dApp está basada en mi Trabajo de Fin de Grado de Ingeniería Informática de 2019, el cual puedes encontrar [aquí](https://drive.google.com/file/d/1nc4Z30IAWintO9_fmyKp3WAgtheShIaL/view?usp=sharing), en una versión más actualizada.*    
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   
@@ -16,6 +16,7 @@
 ## Dependencias:
   "[ethereum-blockies-base64](https://https://www.npmjs.com/package/ethereum-blockies-base64)" - Librería para generar identidades como bloques en PNG, codificados en base64   
   "[vue-router](https://router.vuejs.org/)" - Enrutador para Vue.js   
+  "[vuex](https://vuex.vuejs.org/)" - Librería para gestión del estado (State Management) de aplicaciones Vue.js   
   "[sweetalert](https://sweetalert2.github.io/)" - Reemplazo para la función alert de Javascript  
   "[Bootstrap 4](https://blog.getbootstrap.com/2019/11/28/bootstrap-4-4-1/)" - Framework de CSS    
   "[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)" - Progress bar en CSS puro.     
@@ -75,18 +76,15 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas, donde los indicadores están hechos únicamente con CSS.   
    
 #### Próximos cambios:   
-  
+Añadir texto mientras se espera transacción Ethereum  
    
  
-#### Hecho v8:   
-Footer: Añadido link al repositorio en Github   
-Compras: No se puede comprar energía si no cabe en la batería   
-Batería: Cambiadas las imágenes de las baterías por indicadores progresivos hechos únicamente con CSS, [css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)   
-General: Cambiados los títulos de las páginas de compras, ventas e historial.    
-General: Acortado el span con el precio del Ether   
-General: Webpack migrado de la v3 a la v4. Añadidas más dependencias menores (babel, css...) y reducidas las vulnerabilidades    
+#### Hecho v9:   
+General: Añadido Vuex y quitados los componentes del localstorage   
+General: Arreglados problemas de renderización por utilizar el filter de JS   
+General: Arreglados problemas de string y numbers en las variables de batería   
       
-      
+
 #### Donaciones 
    
 <a href="https://www.buymeacoffee.com/yeadan" target="_blank"><img src="https://github.com/yeadan/blockenergy/blob/master/public/default-orange.png" alt="Buy Me A Coffee" style="height: 26px !important;width: 109px !important;" ></a>   

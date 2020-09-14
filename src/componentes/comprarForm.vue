@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="row" v-if="Object.keys(ofertas).length > 0">
-      <div v-for="(oferta, index) in showHechoFalse" :key="index" >
-        <div style="margin:5%" class="card text-center" >
+      <div v-for="(oferta, index) in ofertas" :key="index" >
+        <div v-if="oferta.hecho == false" style="margin:5%" class="card text-center" >
           <div style="position: relative">
             <img class="card-img-top" v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor width="2">     
             <div style="position: absolute;top: 50%;  left: 50%;;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </div>
@@ -25,6 +25,7 @@
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
+import {ACTION_CHANGE_BATTERY_TOTAL,ACTION_CHANGE_ADDRESS} from './../store/app.store'
 
 export default {
       data(){ return {
@@ -65,18 +66,10 @@ export default {
         }
     });
   },
-  computed: {
-    // Solo mostraremos en el v-for cuando oferta.hecho == false
-    showHechoFalse: function () {
-      return this.ofertas.filter(function (oferta) {
-        return oferta.hecho == false
-      })
-    }
-  },
   methods: {
     // Comprueba que la address es la actual del Metamask
     comprueba: function (addr) {
-      if (addr == this.$root.adress) return false
+      if (addr == this.$store.getters.getAddress) return false
       else return true 
     },
     //Para las imágenes personalizadas (blockies) de cada address
@@ -89,7 +82,7 @@ export default {
         swal('Error', 'No puedes comprar tu propia energía','error')
         return
       }
-      if (this.ofertas[indice].cantidad + this.$root.batteryTotal > 15000) {
+      if (Number(this.ofertas[indice].cantidad) + this.$store.getters.getTotal > 15000) {
         swal('Error', 'No cabe tanta energía en tu batería','error')
         return
       }
@@ -101,7 +94,7 @@ export default {
       
       //Llamada al Smart Contract
       energy.methods.doneAuction(indice, gwei)
-      .send({ from: this.$root.adress })
+      .send({ from: this.$store.getters.getAddress })
       .then(() => {
         //Actualizamos para vista más rápida
         this.ofertas[indice].hecho = true;

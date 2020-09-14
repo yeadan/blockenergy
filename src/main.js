@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import swal from 'sweetalert'
+import store from './store'
 import VueRouter from 'vue-router'
 import { routes } from './rutas.js'
 
@@ -12,13 +13,9 @@ const router = new VueRouter({
 })
 
 const vm = new Vue({
-  data: { 
-    globalTotal: Number=0,      //Energía utilizada
-    batteryTotal: Number=10000, //Energía en la batería
-    address: '',                  //Address actual 
-  },
   router,
-  render: h => h(App)
+  render: h => h(App),
+  store
 });
 
 vm.$mount('#app');

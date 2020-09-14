@@ -41,8 +41,8 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr v-for="(oferta, index) in showHechoFalse" :key="index">
+				<tbody v-for="(oferta, index) in ofertas" :key="index">
+					<tr v-if="oferta.hecho == false">
 						<td>
 							<span> <!-- Dato cantidad -->
 								{{ oferta.cantidad }}
@@ -73,6 +73,8 @@
 <script>
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
+import {ACTION_CHANGE_BATTERY_TOTAL, ACTION_CHANGE_BATTERY_USED, ACTION_CHANGE_ADDRESS} from './../store/app.store'
+
 export default {
 	data(){ 
 		return {
@@ -96,17 +98,10 @@ export default {
 		// y las pasa a ofertas
 		this.llenarOfertas()
 	},
-	computed: {
-		// Solo mostraremos en el v-for cuando oferta.hecho == false
-		showHechoFalse: function () {
-			return this.ofertas.filter(function (oferta) {
-				return oferta.hecho == false
-			})
-		}
-	},
 	methods: {
 		llenarOfertas: function () {
 			//Almacenamos todas las ofertas propias
+			this.ofertas= []
 			energy.methods
 			.returnAllAuctions()
 			.call()
@@ -124,13 +119,14 @@ export default {
 					hecho: result[i].done
 					})
 					//Para solo mostrar las de uno mismo
-					if (result[i].seller != this.$root.adress)
+					if (result[i].seller != this.$store.getters.getAddress)
 							this.ofertas[i].hecho = true
 					//Actualizamos el nivel de la batería
-					if ((result[i].seller == this.$root.adress) && (!result[i].done)) {
+					if ((result[i].seller == this.$store.getters.getAddress) && (!result[i].done)) {
 							glob += parseInt(result[i].amount)
 					}
-					this.$root.globalTotal = glob
+					this.$store.dispatch(ACTION_CHANGE_BATTERY_USED,glob)
+					
 				}
 			})
 		},
@@ -151,7 +147,7 @@ export default {
 				swal('Error','El precio no puede ser tan pequeño.','error');
 				return;
 			}
-			if (cnt > this.$root.batteryTotal - this.$root.globalTotal) {
+			if (cnt > this.$store.getters.getTotal - this.$store.getters.getUsed) {
 				swal('Oops', 'No puedes poner a la venta más energía de la disponible','error');
 				return
 			}
@@ -172,7 +168,6 @@ export default {
 						cantidad: cnt/1000,
 						precio: prc,
 					})
-					//Borramos inputs, desbloqueamos botones y actualizamos ofertas
 					this.cantidad = 0;
 					this.precio = 0;
 					this.buttonOff = false;
@@ -183,14 +178,15 @@ export default {
 			this.precio = 0;
 		},
 		borrarOferta: function (indice) {
-			if (this.$root.adress != this.ofertas[indice].vendedor) {
+			if (this.$store.getters.getAddress != this.ofertas[indice].vendedor) {
+				console.log(" Solo puedes borrar tus ofertas")
 				this.llenarOfertas()
 				return
 			}
 			this.buttonOff = true
 			energy.methods.
 			deleteAuction(indice)
-			.send({ from: this.$root.adress })
+			.send({ from: this.$store.getters.getAddress })
 			.then(( ) => {
 				this.buttonOff = false
 				this.llenarOfertas()

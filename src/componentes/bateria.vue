@@ -2,9 +2,9 @@
 <div align="center" >
   <div id="nivel">  
 	<hr>
-    <p><small><strong>Nivel batería </strong>: {{this.$root.batteryTotal}}W </small></p>
+    <p><small><strong>Nivel batería </strong>: {{ returnTotal }}W </small></p>
 	<div class="progress-circle" :class="this.circleTotal" >
-		<span>{{(this.$root.batteryTotal/150).toFixed(0)}}%</span>
+		<span>{{(returnTotal/150).toFixed(0)}}%</span>
 		<div class="left-half-clipper">
 			<div class="first50-bar"></div>
 			<div class="value-bar"></div>
@@ -13,9 +13,9 @@
 	<hr>
   </div>
   <div id="disponible" >
-    <p><small><strong>Nivel disponible</strong>: {{((this.$root.batteryTotal)-(this.$root.globalTotal)).toFixed(0)}}W</small></p>
+    <p><small><strong>Nivel disponible</strong>: {{((returnTotal)-(returnUsed)).toFixed(0)}}W</small></p>
 	<div class="progress-circle" align="left" :class="this.circleDispo" >
-		<span>{{((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)}}%</span>
+		<span>{{((returnTotal/150)-(returnUsed/150)).toFixed(0)}}%</span>
 		<div class="left-half-clipper">
 			<div class="first50-bar"></div>
 			<div class="value-bar"></div>
@@ -29,12 +29,13 @@
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 import '../../src/css-circular-prog-bar.css'
+import {ACTION_CHANGE_BATTERY_TOTAL,ACTION_CHANGE_BATTERY_USED} from './../store/app.store'
 
 export default {
   data() { 
     return { 
 		circleTotal: '',
-		circleDispo: ''
+		circleDispo: '',
     }
   }, 
 mounted() {
@@ -43,18 +44,26 @@ mounted() {
 updated() {
 	this.changeLevels()
 },
+computed : {
+	returnTotal: function () {
+		  return this.$store.getters.getTotal
+	  },
+	returnUsed: function () {
+		  return this.$store.getters.getUsed
+	  }
+},
   methods: {    
     changeLevels: function() {
 		//circleTotal
-		if ((this.$root.batteryTotal/150).toFixed(0) > 50 )
-			this.circleTotal='over50 p'+ (this.$root.batteryTotal/150).toFixed(0)
+		if ((this.$store.getters.getTotal/150).toFixed(0) > 50 )
+			this.circleTotal='over50 p'+ (this.$store.getters.getTotal/150).toFixed(0)
 		else 
-			this.circleTotal='p'+ (this.$root.batteryTotal/150).toFixed(0)
+			this.circleTotal='p'+ (this.$store.getters.getTotal/150).toFixed(0)
 		//circleDispo
-		if (((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0) > 50 )
-			this.circleDispo='over50 p'+ ((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)
+		if (((this.$store.getters.getTotal/150)-(this.$store.getters.getUsed/150)).toFixed(0) > 50 )
+			this.circleDispo='over50 p'+ ((this.$store.getters.getTotal/150)-(this.$store.getters.getUsed/150)).toFixed(0)
 		else 
-			this.circleDispo='p'+ ((this.$root.batteryTotal/150)-(this.$root.globalTotal/150)).toFixed(0)
+			this.circleDispo='p'+ ((this.$store.getters.getTotal/150)-(this.$store.getters.getUsed/150)).toFixed(0)
 	}
   }
 }

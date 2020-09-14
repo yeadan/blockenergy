@@ -11,7 +11,6 @@
         <label class="h6">ETH </label>
         <span class="bg-white px-1 h6" id="eth"></span>
       </div>
-
       <router-view :key="$route.fullPath"></router-view>
     </div>
     <pie></pie>
@@ -22,19 +21,19 @@
 import web3 from '../contracts/web3'
 import Encabezado from './componentes/encabezado.vue'
 import Pie from './componentes/pie.vue'
+import { ACTION_CHANGE_BATTERY_TOTAL, ACTION_CHANGE_ADDRESS } from './store/app.store'
 export default {
   name: 'App',
   components: {
     encabezado: Encabezado,
     pie: Pie
   }, beforeMount() {
-    // Ponemos en 'adress' la address actual, 
+    // Ponemos en el store la address actual, 
     // para los cambios en Metamask, cada 500ms
     window.setInterval(() => {
       web3.eth.getAccounts().then((accounts) => {
-        if (this.$root.adress != accounts[0]) {
-          this.$root.adress = accounts[0];
-          console.log("Cambio de address: ",this.$root.adress);
+        if (this.$store.getters.getAddress != accounts[0]) {
+          this.$store.dispatch(ACTION_CHANGE_ADDRESS,accounts[0])
         }
       })
     }, 500)
@@ -52,11 +51,11 @@ export default {
     getBatteryLevel: function (){
       //Mientras no haya batería real, capturaremos un 
       // número random externamente para simularla
-      let url ='https://www.random.org/integers/?num=1&min=10000&max=15000&col=1&base=10&format=plain&rnd=new'
+      let url ='https://www.random.org/integers/?num=1&min=10000&max=14999&col=1&base=10&format=plain&rnd=new'
       $.ajax({url: url, success: function(result){
         console.log("Total de la batería: "+result)
         }}).then( (value) => {
-                this.$root.batteryTotal = value
+                this.$store.dispatch(ACTION_CHANGE_BATTERY_TOTAL,value)
             })
     }
   }

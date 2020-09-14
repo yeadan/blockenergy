@@ -19,6 +19,7 @@
   "[vuex](https://vuex.vuejs.org/)" - Librería para gestión del estado (State Management) de aplicaciones Vue.js   
   "[sweetalert](https://sweetalert2.github.io/)" - Reemplazo para la función alert de Javascript  
   "[Bootstrap 4](https://blog.getbootstrap.com/2019/11/28/bootstrap-4-4-1/)" - Framework de CSS    
+  "[jQuery](https://jquery.com/)" - Biblioteca de Javascript para simplificar las interacciones con el DOM   
   "[css-circular-prog-bar](https://tiagobalmeida.github.io/posts/making-a-pure-css-circular-progress-bar.html)" - Progress bar en CSS puro.     
 
 
@@ -79,6 +80,7 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
 
     
 #### Hecho v9:   
+General: Reconstruido el proyecto para eliminar webpack y dejarlo con vue-cli   
 General: Añadido Vuex y quitados los componentes del localstorage   
 General: Arreglados problemas de renderización por utilizar el filter de JS   
 General: Arreglados problemas de string y numbers en las variables de batería   

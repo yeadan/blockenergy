@@ -68,8 +68,8 @@
 <script>
 import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
-import {ACTION_CHANGE_BATTERY_TOTAL, ACTION_CHANGE_BATTERY_USED, ACTION_CHANGE_ADDRESS} from './../store/app.store'
-
+import {ACTION_CHANGE_BATTERY_USED} from './../store/app.store'
+import swal from 'sweetalert'
 export default {
 	data(){ 
 		return {
@@ -175,7 +175,7 @@ export default {
 					this.precio = 0;
 					this.buttonOff = false;
 					this.llenarOfertas()
-				}).catch ((error) => {
+				}).catch (() => {
 					this.buttonOff = false
 					swal.close()
 					swal({
@@ -217,7 +217,7 @@ export default {
 				})
 				this.buttonOff = false
 				this.llenarOfertas()
-			}).catch ((error) => {
+			}).catch (() => {
 					this.buttonOff = false
 					swal.close()
 					swal({

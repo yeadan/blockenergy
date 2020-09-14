@@ -22,10 +22,10 @@
   </div>
 </template>
 <script>
-import web3 from '../../contracts/web3'
+//import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
-import {ACTION_CHANGE_BATTERY_TOTAL,ACTION_CHANGE_ADDRESS} from './../store/app.store'
+import swal from 'sweetalert'
 
 export default {
       data(){ return {
@@ -108,7 +108,7 @@ export default {
           button: "Ok",
         });
         return energy.methods.returnAllAuctions().call();
-      }).catch ((error) => {
+      }).catch (() => {
         this.buttonOff = false
         swal.close()
         swal({

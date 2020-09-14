@@ -22,6 +22,7 @@ import web3 from '../contracts/web3'
 import Encabezado from './componentes/encabezado.vue'
 import Pie from './componentes/pie.vue'
 import { ACTION_CHANGE_BATTERY_TOTAL, ACTION_CHANGE_ADDRESS } from './store/app.store'
+import $ from 'jquery'
 export default {
   name: 'App',
   components: {

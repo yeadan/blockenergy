@@ -26,6 +26,7 @@
 import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
 import swal from 'sweetalert'
+import $ from 'jquery'
 
 export default {
       data(){ return {

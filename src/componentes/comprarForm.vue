@@ -37,16 +37,7 @@ export default {
         $("#disponible").show()
             },
       mounted() {
-            //  $("#nivel").hide()
         $("#disponible").hide()
-      // Función para manejar el error de Metamask al cancelar las
-      // transacciones. Si detecta el error, desbloquea los botones
-      window.onerror = function(message, source, line, column, error) {
-         if (error.message == 'Number.isInteger is not a function') {
-          this.buttonOff = false
-          $('.boton').prop('disabled', false);
-        }
-      }
       // Coge todas las ofertas de la blockchain 
       //y las pasa a 'ofertas'
       energy.methods
@@ -92,7 +83,15 @@ export default {
       //Bloqueamos botones
       this.buttonOff = true
       
-      //Llamada al Smart Contract
+      // Alert de transacción
+      swal("Transacción procesándose...", {
+        buttons: false,
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+        //Pondremos 2 minutos de tiempo máximo por seguridad
+        timer: 120000,
+      })
+      //Llamada al Smart Contract  
       energy.methods.doneAuction(indice, gwei)
       .send({ from: this.$store.getters.getAddress })
       .then(() => {
@@ -101,7 +100,24 @@ export default {
         this.ofertas[indice].gwei = gwei;
         //Desbloqueamos botones
         this.buttonOff = false
+        swal.close()
+        swal({
+          title: "Transacción realizada!",
+          text: "Se ha terminado de procesar la transacción",
+          icon: "success",
+          button: "Ok",
+        });
         return energy.methods.returnAllAuctions().call();
+      }).catch ((error) => {
+        this.buttonOff = false
+        swal.close()
+        swal({
+          title: "Transacción no completada!",
+          text: "Se ha encontrado algún error durante la transacción",
+          icon: "error",
+          button: "Ok",
+        })
+        $('.boton').prop('disabled', false)
       })              
     }
   }

@@ -14,13 +14,8 @@
 	</div>
 	<div class="form-group row">
 		
-		<label class="col-2 col-form-label" for="precio"><strong>Precio</strong></label>
-		<div class="col-2 col-form-label">
-		<label class="" for="checkbox">Free</label>
-		<input class="" type="checkbox" id="checkbox" v-model="checked">
-		</div>
-	
-		<div class="col-4">
+		<label class="col-3 col-form-label" for="precio"><strong>Precio</strong></label>
+		<div class="col-5">
 			<input v-model="precio" v-on:keyup.enter="crearOferta" type="number" id="precio" placeholder="€/kWh" class="form-control">
 		</div>
 		<div class="col-4">
@@ -86,14 +81,6 @@ export default {
 		}
 	},
 	mounted() {
-		// Función para manejar el error de Metamask 
-		// al cancelar las transacciones
-		window.onerror = function(message, source, line, column, error) {
-			if (error.message == 'Number.isInteger is not a function') {
-				this.buttonOff = false
-				$(':button').prop('disabled', false);
-			}
-		}
 		// Coge todas las ofertas de la blockchain 
 		// y las pasa a ofertas
 		this.llenarOfertas()
@@ -156,6 +143,15 @@ export default {
 
 			//El id sera un getTime
 			var id = new Date().getTime()
+
+			// Alert de transacción
+			swal("Transacción procesándose...", {
+				buttons: false,
+				closeOnClickOutside: false,
+				closeOnEsc: false,
+				//Pondremos 2 minutos de tiempo máximo por seguridad
+				timer: 120000,
+			})
 			// Llamamos a createAuction en la Blockchain
 			return web3.eth.getAccounts().then((accounts) => {
 				energy.methods.
@@ -168,10 +164,27 @@ export default {
 						cantidad: cnt/1000,
 						precio: prc,
 					})
+					swal.close()
+					swal({
+						title: "Transacción realizada!",
+						text: "Se ha terminado de procesar la transacción",
+						icon: "success",
+						button: "Ok",
+					})
 					this.cantidad = 0;
 					this.precio = 0;
 					this.buttonOff = false;
 					this.llenarOfertas()
+				}).catch ((error) => {
+					this.buttonOff = false
+					swal.close()
+					swal({
+						title: "Transacción no completada!",
+						text: "Se ha encontrado algún error durante la transacción",
+						icon: "error",
+						button: "Ok",
+					})
+					$(':button').prop('disabled', false);
 				})
 			})							
 			this.cantidad = 0;
@@ -184,13 +197,37 @@ export default {
 				return
 			}
 			this.buttonOff = true
+			swal("Transacción procesándose...", {
+				buttons: false,
+				closeOnClickOutside: false,
+				closeOnEsc: false,
+				//Pondremos 2 minutos de tiempo máximo por seguridad
+				timer: 120000,
+			})
 			energy.methods.
 			deleteAuction(indice)
 			.send({ from: this.$store.getters.getAddress })
 			.then(( ) => {
+				swal.close()
+				swal({
+					title: "Transacción realizada!",
+					text: "Se ha eliminado la energía a la venta",
+					icon: "success",
+					button: "Ok",
+				})
 				this.buttonOff = false
 				this.llenarOfertas()
-			})                      
+			}).catch ((error) => {
+					this.buttonOff = false
+					swal.close()
+					swal({
+					title: "Transacción no completada!",
+					text: "Se ha encontrado algún error durante la transacción",
+					icon: "error",
+					button: "Ok",
+					})
+					$(':button').prop('disabled', false);
+				})                      
 		}
 	}
 }

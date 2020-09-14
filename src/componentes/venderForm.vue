@@ -70,6 +70,8 @@ import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 import {ACTION_CHANGE_BATTERY_USED} from './../store/app.store'
 import swal from 'sweetalert'
+
+import $ from 'jquery'
 export default {
 	data(){ 
 		return {
@@ -184,11 +186,12 @@ export default {
 						icon: "error",
 						button: "Ok",
 					})
+					this.cantidad = 0;
+					this.precio = 0;
 					$(':button').prop('disabled', false);
 				})
 			})							
-			this.cantidad = 0;
-			this.precio = 0;
+
 		},
 		borrarOferta: function (indice) {
 			if (this.$store.getters.getAddress != this.ofertas[indice].vendedor) {

@@ -33,19 +33,15 @@
 </template>
 
 <script>
-import Bateria from './bateria.vue'
-import web3 from '../../contracts/web3'
 import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
+import $ from 'jquery'
 
 export default {
   data() { 
     return {
       historial: []
     }
-  },
-  components: {
-    bateria: Bateria
   },
   mounted() {
     $("#myTitle").text("Historial de ventas");

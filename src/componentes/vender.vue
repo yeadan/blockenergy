@@ -11,6 +11,7 @@
 <script>
 import Bateria from './bateria.vue'
 import VenderForm from './venderForm.vue'
+import $ from 'jquery'
 export default {
   components: {
     bateria: Bateria,

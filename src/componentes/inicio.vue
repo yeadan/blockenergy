@@ -5,12 +5,11 @@
 </template>
 
 <script>
-import Bateria from './bateria.vue'
 import Carousel from './carousel.vue'
+import $ from 'jquery'
 export default {
 
   components: {
-    bateria: Bateria,
     carousel: Carousel
   }, mounted() {
     $('#price').hide()

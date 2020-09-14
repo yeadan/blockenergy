@@ -26,10 +26,7 @@
 </div>
 </template>
 <script>
-import web3 from '../../contracts/web3'
-import energy from '../../contracts/energyInstance'
 import '../../src/css-circular-prog-bar.css'
-import {ACTION_CHANGE_BATTERY_TOTAL,ACTION_CHANGE_BATTERY_USED} from './../store/app.store'
 
 export default {
   data() { 
@@ -46,14 +43,14 @@ updated() {
 },
 computed : {
 	returnTotal: function () {
-		  return this.$store.getters.getTotal
-	  },
+			return this.$store.getters.getTotal
+		},
 	returnUsed: function () {
-		  return this.$store.getters.getUsed
-	  }
+		return this.$store.getters.getUsed
+	}
 },
-  methods: {    
-    changeLevels: function() {
+	methods: {    
+		changeLevels: function() {
 		//circleTotal
 		if ((this.$store.getters.getTotal/150).toFixed(0) > 50 )
 			this.circleTotal='over50 p'+ (this.$store.getters.getTotal/150).toFixed(0)
@@ -64,7 +61,7 @@ computed : {
 			this.circleDispo='over50 p'+ ((this.$store.getters.getTotal/150)-(this.$store.getters.getUsed/150)).toFixed(0)
 		else 
 			this.circleDispo='p'+ ((this.$store.getters.getTotal/150)-(this.$store.getters.getUsed/150)).toFixed(0)
+		}
 	}
-  }
 }
 </script>

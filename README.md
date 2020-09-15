@@ -77,10 +77,11 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas, donde los indicadores están hechos únicamente con CSS.   
    
 #### Próximos cambios:   
-
+Quitar vulnerabilidades github   
+Añadir un mejor alert por si no hay metamask   
     
 #### Hecho v9:   
-General: Reconstruido el proyecto para eliminar webpack y dejarlo con vue-cli   
+General: Reconstruido el proyecto y rehecho con webpack    
 General: Añadido Vuex y quitados los componentes del localstorage   
 General: Arreglados problemas de renderización por utilizar el filter de JS   
 General: Arreglados problemas de string y numbers en las variables de batería   

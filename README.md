@@ -78,7 +78,7 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
    
 #### Próximos cambios:   
 Quitar vulnerabilidades github   
-Añadir un mejor alert por si no hay metamask   
+ 
     
 #### Hecho v9:   
 General: Reconstruido el proyecto y rehecho con webpack    
@@ -86,6 +86,7 @@ General: Añadido Vuex y quitados los componentes del localstorage
 General: Arreglados problemas de renderización por utilizar el filter de JS   
 General: Arreglados problemas de string y numbers en las variables de batería   
 General: Actualizados los mensajes de error al rechazar una transacción en Metamask   
+General: Añadido un sweetalert con link de búsqueda de Metamask si no hay ethereum browser   
 Compras/Ventas: Añadidas alerts para controlar transacciones   
       
 #### Donaciones 

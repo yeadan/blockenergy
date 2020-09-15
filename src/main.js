@@ -8,14 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 Vue.use(VueRouter)
 
-window.$ = window.jQuery = require('jquery');
-
-Vue.use({
-  install: function(Vue){
-      Vue.prototype.$jQuery = require('jquery'); 
-      }
-  });
-
 const router = new VueRouter({
   routes,
  mode: 'history'

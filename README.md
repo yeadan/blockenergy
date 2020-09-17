@@ -38,7 +38,9 @@ Una vez instalados el Metamask y todas las dependencias se podrá ejecutar en lo
 
 ```bash
 npm run dev
-```
+```   
+   
+   Este repositorio está online en [Netlify](https://blockenergy.netlify.app)   
 
 
 ## Estructura 

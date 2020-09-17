@@ -76,8 +76,7 @@ Página de historial de ventas. Enseña las direcciones del comprador y del vend
 
 La idea es que en la página de compras y ventas esté a disposición del usuario el nivel de su batería, y con ese nivel poder llevar un control de las compras y las ventas. Al no tener acceso, en la implementación, a ninguna batería, solo aparece una batería donde se le asigna un número aleatorio (con un http GET externo para que se acerque a cómo sería realmente). Esta cantidad es la que se irá utilizando para las compras y ventas, donde los indicadores están hechos únicamente con CSS.   
    
-#### Próximos cambios:   
-Quitar vulnerabilidades github   
+#### Próximos cambios:    
  
     
 #### Hecho v9:   
@@ -87,7 +86,8 @@ General: Arreglados problemas de renderización por utilizar el filter de JS
 General: Arreglados problemas de string y numbers en las variables de batería   
 General: Actualizados los mensajes de error al rechazar una transacción en Metamask   
 General: Añadido un sweetalert con link de búsqueda de Metamask si no hay ethereum browser   
-Compras/Ventas: Añadidas alerts para controlar transacciones   
+Compras/Ventas: Añadidas alerts para controlar transacciones  
+General: Añadidas resolutions al package.json    
       
 #### Donaciones 
    

@@ -1,19 +1,25 @@
 {
-  "name": "sergo",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Yeadan <sergio.bosch@gmail.com>",
+  "name": "blockenergy",
+  "version": "1.9.0",
+  "description": "A Vue.js + Ethereum + Web3.js project",
+  "author": "Sergio Bosch Vega <sergio.bosch@gmail.com>",
   "private": true,
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "dev": "webpack-dev-server --inline --progress --open --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
+  },
+  "resolutions": {
+    "js-yaml": "3.13.1",
+    "serialize-javascript": ">=3.1.0"
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
     "core-js": "^3.6.5",
     "ethereum-blockies-base64": "^1.0.2",
     "jquery": "^3.5.1",
+    "npm-force-resolutions": "0.0.3",
     "popper.js": "^1.16.1",
     "sweetalert": "^2.1.2",
     "vue": "^2.6.11",

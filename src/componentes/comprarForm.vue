@@ -26,6 +26,7 @@
 import energy from '../../contracts/energyInstance'
 import makeBlockie from 'ethereum-blockies-base64'
 import swal from 'sweetalert'
+import {ACTION_CHANGE_BATTERY_TOTAL} from './../store/app.store'
 import $ from 'jquery'
 
 export default {
@@ -108,9 +109,12 @@ export default {
           icon: "success",
           button: "Ok",
         });
+        this.$store.dispatch(ACTION_CHANGE_BATTERY_TOTAL,
+        Number(this.ofertas[indice].cantidad) + this.$store.getters.getTotal)
         return energy.methods.returnAllAuctions().call();
-      }).catch (() => {
+      }).catch ((error) => {
         this.buttonOff = false
+        console.log(error)
         swal.close()
         swal({
           title: "Transacción no completada!",

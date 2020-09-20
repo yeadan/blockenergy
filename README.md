@@ -82,7 +82,7 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
  
     
 #### Hecho v9:   
-General: Reconstruido el proyecto y rehecho con webpack    
+General: Reconstruido el proyecto con webpack    
 General: Añadido Vuex y quitados los componentes del localstorage   
 General: Arreglados problemas de renderización por utilizar el filter de JS   
 General: Arreglados problemas de string y numbers en las variables de batería   
@@ -90,6 +90,7 @@ General: Actualizados los mensajes de error al rechazar una transacción en Meta
 General: Añadido un sweetalert con link de búsqueda de Metamask si no hay ethereum browser   
 Compras/Ventas: Añadidas alerts para controlar transacciones  
 General: Añadidas resolutions al package.json    
+Compras: Añadida la energía comprada a la batería   
       
 #### Donaciones 
    

@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="row" v-if="Object.keys(ofertas).length > 0">
-      <div v-for="(oferta, index) in ofertas" :key="index" >
+      <div class="d-flex align-items-stretch" v-for="(oferta, index) in ofertas" :key="index" >
         <div v-if="oferta.hecho == false" style="margin:5%" class="card text-center" >
-          <div style="position: relative">
+          <div style="position: relative ">
             <img class="card-img-top" v-bind:src="blockie(oferta.vendedor)" v-bind:title=oferta.vendedor width="2">     
             <div style="position: absolute;top: 50%;  left: 50%;;transform: translate(-50%, -50%);" v-bind:title=oferta.vendedor>Vendedor </div>
           </div>
-          <div class="card-block">
+          <div class="card-block ">
             <p align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
-            <p align="left" class="card-text"><small><strong>Cantidad: </strong>{{oferta.cantidad }}W</small></p>
+            <p align="left" class="card-text"><small><strong>Cantidad: <br></strong>{{oferta.cantidad }}W</small></p>
             <p align="left" class="card-text"><small><strong>Total: </strong>{{(oferta.cantidad/1000*oferta.precio).toFixed(2)}}€</small></p>
             <button class="btn btn-success boton" :disabled="buttonOff" @click="comprar(oferta.vendedor,index)">Comprar</button>
           </div>

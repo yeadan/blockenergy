@@ -3,10 +3,10 @@
     <div class="col">
       <div class="container">
         <div class="row" v-if="Object.keys(historial).length > 0">
-          <div class="min-vw-75 max-hw-100" v-for="(oferta, index) in showHechoTrue" :key="index">
+          <div class="d-flex align-items-stretch min-vw-75 max-hw-100" v-for="(oferta, index) in showHechoTrue" :key="index">
             <div class="card text-center col-11" >
               <div style="position:relative">
-                <img class="card-img-top img-center"
+                <img class="card-img-top img-center align-items-stretch"
                   v-bind:src="blockie(oferta.vendedor)" v-bind:title="oferta.vendedor" >
                 <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" v-bind:title="oferta.vendedor">Vendedor </div>
               </div>
@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 img {
-  padding:5%
+  padding:9%
 }
 h2 {
   margin-bottom:25px

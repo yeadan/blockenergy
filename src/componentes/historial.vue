@@ -93,10 +93,13 @@ export default {
 </script>
 
 <style scoped>
+p {
+  padding-left:9%
+}
 img {
   padding:9%
 }
 h2 {
-  margin-bottom:25px
+  margin-bottom:15%
 }
 </style>

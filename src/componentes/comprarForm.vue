@@ -129,13 +129,20 @@ export default {
 }
 </script>
 <style scoped>
+p {
+  padding-left:15%;
+  padding-right:10%
+}
 img {
-  padding:5%
+  padding:15%;
+  padding-bottom: 5%;
 }
 .boton {
-  margin:5px
+  margin:10px;
+  margin-bottom:10%
+
 }
 .card-text {
-  margin:5px
+  margin:0px
 }
 </style>

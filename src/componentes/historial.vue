@@ -1,14 +1,12 @@
 <template>
-  <div class="row ">
-    <div class="col">
       <div class="container">
         <div class="row" v-if="Object.keys(historial).length > 0">
           <div class="d-flex align-items-stretch min-vw-75 max-hw-100" v-for="(oferta, index) in showHechoTrue" :key="index">
-            <div class="card text-center col-11" >
+            <div class="card mb-2 text-center col-11" >
               <div style="position:relative">
                 <img class="card-img-top img-center align-items-stretch"
                   v-bind:src="blockie(oferta.vendedor)" v-bind:title="oferta.vendedor" >
-                <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" v-bind:title="oferta.vendedor">Vendedor </div>
+                <div style="color:white;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" v-bind:title="oferta.vendedor">Vendedor </div>
               </div>
               <div class="card-block">
                 <p align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>
@@ -18,7 +16,7 @@
                 <p align="left" class="card-text"><small><strong>Fecha: </strong>{{ timestampToDate(oferta.id) }}</small></p>                  
                 <div style="position:relative">
                   <img class="card-img"  v-bind:src="blockie(oferta.comprador)" v-bind:title="oferta.comprador" width="2">
-                  <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%)" v-bind:title="oferta.comprador">Comprador </div>
+                  <div style="color:white;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%)" v-bind:title="oferta.comprador">Comprador </div>
                 </div>
               </div>
             </div>
@@ -28,8 +26,6 @@
           Historial de ventas vacío
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>

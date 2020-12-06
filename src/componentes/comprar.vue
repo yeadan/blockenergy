@@ -4,7 +4,6 @@
       <bateria></bateria>
     </div>
     <div class="col-9">
-      
       <comprarForm></comprarForm>
     </div>
   </div>

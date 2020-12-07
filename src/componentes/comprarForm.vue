@@ -199,6 +199,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  letter-spacing: 0.05em
 }
 table {
   padding: 10px;

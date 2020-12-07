@@ -6,7 +6,7 @@
               <div style="position:relative">
                 <img class="card-img-top img-center align-items-stretch"
                   v-bind:src="blockie(oferta.vendedor)" v-bind:title="oferta.vendedor" >
-                <div style="color:white;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" v-bind:title="oferta.vendedor">Vendedor </div>
+                <div style="letter-spacing: 0.05em;color:white;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" v-bind:title="oferta.vendedor">Vendedor </div>
               </div>
               <div class="card-block">
                 <p align="left" class="card-text"><small><strong>Precio: </strong>{{ oferta.precio }}€/kWh</small></p>

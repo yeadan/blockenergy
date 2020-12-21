@@ -104,7 +104,6 @@ export default {
     let i;
     for (i = 0; i < this.ofertas.length; i++) {
       if (this.ofertas[i].hecho) {
-        console.log(i);
         $("#" + i).hide();
         $("." + i).hide();
       }

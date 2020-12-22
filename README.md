@@ -92,7 +92,8 @@ Compras/Ventas: Añadidas alerts para controlar transacciones
 General: Añadidas resolutions al package.json    
 Compras: Añadida la energía comprada a la batería   
 Compras: Cambiada la vista completamente
-Historial: Pequeños cambios de vista (color texto, padding cards)
+Historial: Pequeños cambios de vista (color texto, padding cards, responsive)
+General: Actualizadas dependencias url-loader y npm-notifier
       
 #### Donaciones 
    

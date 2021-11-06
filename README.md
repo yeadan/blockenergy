@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.9.0
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.9.1
 *Esta dApp está basada en mi Trabajo de Fin de Grado de Ingeniería Informática de 2019, el cual puedes encontrar [aquí](https://drive.google.com/file/d/1nc4Z30IAWintO9_fmyKp3WAgtheShIaL/view?usp=sharing), en una versión más actualizada.*    
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   

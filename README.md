@@ -89,7 +89,7 @@ General: Arreglados problemas de string y numbers en las variables de batería
 General: Actualizados los mensajes de error al rechazar una transacción en Metamask   
 General: Añadido un sweetalert con link de búsqueda de Metamask si no hay ethereum browser   
 Compras/Ventas: Añadidas alerts para controlar transacciones  
-General: Añadidas resolutions al package.json    
+General: Añadidas resolutions al package.json (6/11/21)   
 Compras: Añadida la energía comprada a la batería   
 Compras: Cambiada la vista completamente   
 Historial: Pequeños cambios de vista (color texto, padding cards, responsive)   

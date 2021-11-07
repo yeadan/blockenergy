@@ -1,4 +1,4 @@
-# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.9.1
+# Blockenergy - dAPP para intercambios de energía en Blockchain v.1.10.0
 *Esta dApp está basada en mi Trabajo de Fin de Grado de Ingeniería Informática de 2019, el cual puedes encontrar [aquí](https://drive.google.com/file/d/1nc4Z30IAWintO9_fmyKp3WAgtheShIaL/view?usp=sharing), en una versión más actualizada.*    
 *Esta versión no incluye los pagos en criptomonedas ni la conexión IoT de las baterías. Utiliza la red de pruebas de Etherscan [Ropsten](https://ropsten.etherscan.io/). Inspirado en el repositorio de [openberry](https://github.com/openberry-ac/Auction)*
   
@@ -81,19 +81,9 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
 #### Próximos cambios:    
  
     
-#### Hecho v9:   
-General: Reconstruido el proyecto con webpack    
-General: Añadido Vuex y quitados los componentes del localstorage   
-General: Arreglados problemas de renderización por utilizar el filter de JS   
-General: Arreglados problemas de string y numbers en las variables de batería   
-General: Actualizados los mensajes de error al rechazar una transacción en Metamask   
-General: Añadido un sweetalert con link de búsqueda de Metamask si no hay ethereum browser   
-Compras/Ventas: Añadidas alerts para controlar transacciones  
-General: Añadidas resolutions al package.json (6/11/21)   
-Compras: Añadida la energía comprada a la batería   
-Compras: Cambiada la vista completamente   
-Historial: Pequeños cambios de vista (color texto, padding cards, responsive)   
-General: Actualizadas dependencias npm-notifier  
+#### Hecho v10:   
+General: Reconstruido el proyecto con webpack 4  
+General: Modificado ancho columna batería/contenido   
       
 #### Donaciones 
    

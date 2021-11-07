@@ -1,15 +1,15 @@
 {
-  "name": "vue-webpack-setup",
-  "version": "1.0.0",
-  "description": "",
+  "name": "blockenergy",
+  "version": "1.10.0",
+  "description": "A Vue.js + Ethereum + Web3.js project",
+  "author": "Sergio Bosch Vega <sergio.bosch@gmail.com>",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "^5.1.3",
     "core-js": "^3.6.5",

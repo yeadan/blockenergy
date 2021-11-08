@@ -84,6 +84,7 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
 #### Hecho v10:   
 General: Reconstruido el proyecto con webpack 4  
 General: Modificado ancho columna batería/contenido   
+General: Actualizado web3.js a versión 1.6.0   
       
 #### Donaciones 
    

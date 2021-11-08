@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development"
+    "start": "webpack-dev-server --open --mode development"
   },
   "keywords": [],
   "license": "MIT",
@@ -15,7 +15,6 @@
     "core-js": "^3.6.5",
     "ethereum-blockies-base64": "^1.0.2",
     "jquery": "^3.6.0",
-    "set-value": "^4.1.0",
     "sweetalert": "^2.1.2",
     "vue": "^2.6.12",
     "vue-router": "^3.4.3",

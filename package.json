@@ -12,8 +12,7 @@
   "keywords": [],
   "license": "MIT",
   "resolutions": {
-    "ansi-html": "https://registry.npmjs.org/ansi-html-community/-/ansi-html-community-0.0.8.tgz",
-    "normalize-url": "^6.0.1"
+    "ansi-html": "https://registry.npmjs.org/ansi-html-community/-/ansi-html-community-0.0.8.tgz"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",

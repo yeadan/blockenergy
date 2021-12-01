@@ -85,6 +85,7 @@ La idea es que en la página de compras y ventas esté a disposición del usuari
 General: Reconstruido el proyecto con webpack 4  
 General: Modificado ancho columna batería/contenido   
 General: Actualizado web3.js a versión 1.6.0   
+Contrato: Añadida la instancia para el contrato desplegado en la testnet Mumbai de la red *Polygon*. Archivo `energyInstance-polygon.js` en el directorio `contracts`.
       
 #### Donaciones 
    
